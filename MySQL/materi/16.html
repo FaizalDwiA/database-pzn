@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Update Data</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="../assets/css/markdown.min.css">
+<link rel="stylesheet" href="../assets/css/highlight.min.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="update-data">Update Data</h1>
+<h2 id="update-data-1">Update Data</h2>
+<ul>
+<li>Untuk mengubah data di tabel, kita bisa menggunakan perintah SQL UPDATE</li>
+<li>Saat menggunakan SQL UPDATE, kita harus memberi tahu data mana yang akan di update dengan WHERE clause</li>
+<li>Hati-hati ketika meng-update data di table, jika sampai WHERE clause nya salah, bisa-bisa kita malah meng-update seluruh data di tabel</li>
+<li>Untuk update, kita harus beritahu, kolom mana yang akan di update</li>
+</ul>
+<hr>
+<h2 id="menambah-kolom-kategori">Menambah Kolom Kategori</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> products
+    <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">COLUMN</span> category ENUM (<span class="hljs-string">&#x27;Makanan&#x27;</span>, <span class="hljs-string">&#x27;Minuman&#x27;</span>, <span class="hljs-string">&#x27;Lain-Lain&#x27;</span>)
+    AFTER name;
+</code></pre>
+<hr>
+<h2 id="mengubah-satu-kolom">Mengubah Satu Kolom</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">UPDATE</span> products
+<span class="hljs-keyword">SET</span> category <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;Makanan&#x27;</span>
+<span class="hljs-keyword">WHERE</span> id <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;P0001&#x27;</span>;
+</code></pre>
+<hr>
+<h2 id="mengubah-beberapa-kolom">Mengubah Beberapa Kolom</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">UPDATE</span> products
+<span class="hljs-keyword">SET</span> category <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;Makanan&#x27;</span>,
+    description <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;Mie Ayam + Ceker&#x27;</span>
+<span class="hljs-keyword">WHERE</span> id <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;P0003&#x27;</span>;
+</code></pre>
+<hr>
+<h2 id="mengubah-dengan-value-di-kolom">Mengubah Dengan Value di Kolom</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">UPDATE</span> products
+<span class="hljs-keyword">SET</span> price <span class="hljs-operator">=</span> price <span class="hljs-operator">+</span> <span class="hljs-number">5000</span>
+<span class="hljs-keyword">WHERE</span> id <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;P0004&#x27;</span>;
+</code></pre>
+
+        
+        
+    </body>
+    </html>

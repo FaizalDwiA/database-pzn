@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Many to Many Relationship</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="../assets/css/markdown.min.css">
+<link rel="stylesheet" href="../assets/css/highlight.min.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="many-to-many-relationship">Many to Many Relationship</h1>
+<hr>
+<h2 id="many-to-many-relationship-1">Many to Many Relationship</h2>
+<ul>
+<li>Many to Many adalah table relationship yang paling kompleks, dan kadang membingungkan untuk pemula</li>
+<li>Many to Many adalah relasi dimana ada relasi antara 2 tabel dimana table pertama bisa punya banyak relasi di table kedua, dan table kedua pun punya banyak relasi di table pertama</li>
+<li>Ini memang sedikit membingungkan, bagaimana caranya bisa relasi kebanyakan secara bolak balik, sedangkan di table kita cuma punya 1 kolom?</li>
+<li>Contoh relasi many to many adalah relasi antara produk dan penjualan, dimana setiap produk bisa dijual berkali kali, dan setiap penjualan bisa untuk lebih dari satu produk</li>
+</ul>
+<hr>
+<h2 id="diagram-many-to-many-relationship">Diagram Many to Many Relationship</h2>
+<p><img src="..\assets\img\37\1.PNG" alt="1"></p>
+<hr>
+<h2 id="bagaimana-implementasi-many-to-many">Bagaimana Implementasi Many to Many?</h2>
+<ul>
+<li>Sekarang pertanyaannya, bagaimana implementasi many to many?</li>
+<li>Apakah kita harus menambahkan id_order di table products? atau id_product di table orders?</li>
+</ul>
+<hr>
+<h2 id="id-product-di-table-order">Id Product di Table Order</h2>
+<ul>
+<li>Jika kita menambahkan id_product di table orders, artinya sekarang sudah benar, bahwa 1 product bisa dijual berkali-kali</li>
+<li>Namun masalahnya adalah, berarti 1 order hanya bisa membeli 1 product, karena cuma ada 1 kolom untuk id_product</li>
+<li>Oke kalo gitu kita tambahkan id_product1, id_product2, dan seterusnya. Solusi ini bisa dilakukan, tapi tidak baik, artinya akan selalu ada maksimal barang yang bisa kita beli dalam satu order</li>
+</ul>
+<hr>
+<h2 id="id-order-di-table-product">Id Order di Table Product</h2>
+<ul>
+<li>Jika kita tambahkan id_order di table products, artinya sekarang 1 order bisa membeli lebih dari 1 product, oke sudah benar</li>
+<li>Tapi sayangnya masalahnya terbalik sekarang, 1 product cuma bisa dijual satu kali, tidak bisa dijual berkali-kali, karena kolom id_order nya cuma 1</li>
+<li>Kalupun kita tambah id_order1, id_order2 dan seterusnya di table product, tetap ada batasan maksimal nya</li>
+<li>Lantai bagaimana solusinya untuk relasi many to many?</li>
+</ul>
+<hr>
+<h2 id="membuat-table-relasi">Membuat Table Relasi</h2>
+<ul>
+<li>Solusi yang biasa dilakukan jika terjadi relasi many to many adalah, biasanya kita akan menambah 1 tabel ditengahnya</li>
+<li>Tabel ini bertugas sebagai jembatan untuk menggabungkan relasi many to many</li>
+<li>Isi table ini akan ada id dari table pertama dan table kedua, dalam kasus ini adalah id_product dan id_order</li>
+<li>Dengan demikian, kita bisa menambahkan beberapa data ke dalam tabel relasi ini, sehingga berarti satu product bisa dijual beberapa kali di dalam table order, dan satu order bisa membeli lebih dari satu product</li>
+</ul>
+<hr>
+<h2 id="diagram-many-to-many-relationship-1">Diagram Many to Many Relationship</h2>
+<p><img src="..\assets\img\37\2.PNG" alt="2"></p>
+<hr>
+<h2 id="membuat-table-order">Membuat Table Order</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> orders
+(
+    id <span class="hljs-type">INT</span> <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span> AUTO_INCREMENT,
+    total <span class="hljs-type">INT</span> <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span>,
+    order_date DATETIME <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-built_in">CURRENT_TIMESTAMP</span>,
+    <span class="hljs-keyword">PRIMARY</span> KEY (id)
+) ENGINE <span class="hljs-operator">=</span> InnoDB;
+</code></pre>
+<hr>
+<h2 id="membuat-table-order-detail">Membuat Table Order Detail</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> orders_detail
+(
+    id_product <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">10</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span>,
+    id_order <span class="hljs-type">INT</span> <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span>,
+    price <span class="hljs-type">INT</span> <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span>,
+    quantity <span class="hljs-type">INT</span> <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span>,
+    <span class="hljs-keyword">PRIMARY</span> KEY (id_product, id_order)
+) ENGINE <span class="hljs-operator">=</span> InnoDB;
+</code></pre>
+<hr>
+<h2 id="membuat-foreign-key">Membuat Foreign Key</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> orders_detail
+    <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">CONSTRAINT</span> fk_orders_detail_product
+    <span class="hljs-keyword">FOREIGN</span> KEY (id_product) <span class="hljs-keyword">REFERENCES</span> products (id);
+
+<span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> orders_detail
+    <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">CONSTRAINT</span> fk_orders_detail_order
+    <span class="hljs-keyword">FOREIGN</span> KEY (id_order) <span class="hljs-keyword">REFERENCES</span> orders (id);
+</code></pre>
+<hr>
+<h2 id="melihat-data-order-detail-dan-product-nya">Melihat Data Order, Detail dan Product-nya</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span>
+<span class="hljs-keyword">FROM</span> orders
+<span class="hljs-keyword">JOIN</span> orders_detail <span class="hljs-keyword">ON</span> (orders_detail.id_order <span class="hljs-operator">=</span> orders.id)
+<span class="hljs-keyword">JOIN</span> products <span class="hljs-keyword">ON</span> (products.id <span class="hljs-operator">=</span> orders_detail.id_product);
+</code></pre>
+<p><strong>Hasil :</strong></p>
+<p><img src="..\assets\img\37\3.PNG" alt="3"></p>
+
+        
+        
+    </body>
+    </html>

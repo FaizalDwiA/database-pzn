@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Bentuk Normal Basis Data ke 3</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="../assets/css/markdown.min.css">
+<link rel="stylesheet" href="../assets/css/highlight.min.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="bentuk-normal-basis-data-ke-3">Bentuk Normal Basis Data ke 3</h1>
+<h2 id="ketergantungan-fungsionalitas">Ketergantungan Fungsionalitas</h2>
+<ul>
+<li>Sebelum kita bahas tentang bentuk normal ke 3, kita harus tahu tentang ketergantungan fungsionalitas</li>
+<li>Dalam tabel, jika terdapat atribut B memiliki ketergantungan fungsionalitas dengan A, maka kita bisa bilang A --&gt; B</li>
+<li>Biasanya A adalah attribute key, dan B adalah attribute yang bukan key</li>
+<li>Dalam bentuk normal ke 3, kita harus teliti tabel yang sudah dalam bentuk normal ke 2, apakah attribute-attribute yang bukan key tersebut tergantung dengan attribute key nya?</li>
+</ul>
+<hr>
+<h2 id="bentuk-normal-basis-data-ke-3-1">Bentuk Normal Basis Data ke 3</h2>
+<ul>
+<li>Pindahkan kolom-kolom yang tidak tergantung ke key menjadi tabel lain</li>
+<li>Hal ini dikarenakan jika terjadi perubahan pada kolom tersebut, ditakutkan perlu melakukan perubahan di banyak baris</li>
+</ul>
+<hr>
+<h2 id="revisi-contoh-kasus--bentuk-normal-ke-3">Revisi Contoh Kasus : Bentuk Normal ke 3</h2>
+<ul>
+<li>Ada banyak kolom yang tidak tergantung dengan key</li>
+<li>Contoh Penjual, Pembeli, Alamat Pengiriman</li>
+<li>Kolom-kolom tersebut jika berubah, maka harus diubah di semua baris Order lainnya, dan itu membuat data tidak konsisten</li>
+<li><a href="https://docs.google.com/spreadsheets/d/1epqlWZiTkCmAWJRy_h2K35PjO9f60vVR6uDbKSRjK9k/edit#gid=175579626">https://docs.google.com/spreadsheets/d/1epqlWZiTkCmAWJRy_h2K35PjO9f60vVR6uDbKSRjK9k/edit#gid=175579626</a></li>
+<li><a href="../assets/table/Third Normal Form.html">Bentuk Normal ke 3</a></li>
+</ul>
+<hr>
+<h2 id="entity-relational-diagram">Entity Relational Diagram</h2>
+<ul>
+<li>Plantuml :
+<ul>
+<li><a href="https://www.plantuml.com/plantuml/uml/SyfFKj2rKt3CoKnELR1Io4ZDoSa70000">https://www.plantuml.com/plantuml/uml/SyfFKj2rKt3CoKnELR1Io4ZDoSa70000</a></li>
+</ul>
+</li>
+<li>Diagram :
+<ul>
+<li><a href="https://gist.github.com/khannedy/6634184f27fd05fc5a8825ade5dd25fc">https://gist.github.com/khannedy/6634184f27fd05fc5a8825ade5dd25fc</a></li>
+</ul>
+</li>
+</ul>
+<p><img src="..\assets\img\17\1.PNG" alt="1"></p>
+
+        
+        
+    </body>
+    </html>

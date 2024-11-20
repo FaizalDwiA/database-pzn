@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Table</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="../assets/css/markdown.min.css">
+<link rel="stylesheet" href="../assets/css/highlight.min.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="table">Table</h1>
+<h2 id="table-1">Table</h2>
+<ul>
+<li>Data biasanya disimpan di dalam tabel di MySQL</li>
+<li>Tiap tabel biasanya menyimpan satu jenis data, misal ketika kita membuat aplikasi toko online, kita akan membuat tabel barang, tabel pelanggan, tabel penjual, dan lain-lain</li>
+<li>Sebelum kita bisa memasukkan data ke tabel, kita wajib terlebih dahulu membuat tabelnya terlebih dahulu</li>
+<li>Dan tiap tabel yang kita buat, wajib ditentukan kolom-kolom nya, dan tipe data tiap kolom nya</li>
+<li>Kita juga bisa mengubah tabel yang sudah terlanjur dibuat, seperti menambah kolom baru, mengubah kolom yang sudah ada, atau menghapus kolom</li>
+</ul>
+<hr>
+<h2 id="storage-engines">Storage Engines</h2>
+<ul>
+<li>MySQL memiliki berbagai cara melakukan pengolahan data, hal ini disebut Storage Engines.</li>
+<li>Saat ini, yang biasa dan populer digunakan adalah InnoDB</li>
+<li>Untuk melihat storage engines apa saja yang terdapat di MySQL, kita bisa menggunakan perintah :</li>
+</ul>
+<pre><code class="language-sql"><span class="hljs-keyword">SHOW</span> ENGINES;
+</code></pre>
+<hr>
+<h2 id="daftar-storage-engines">Daftar Storage Engines</h2>
+<p><img src="..\assets\img\11\1.PNG" alt="1"></p>
+<hr>
+<h2 id="melihat-table">Melihat Table</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">SHOW</span> TABLES;
+</code></pre>
+<hr>
+<h2 id="membuat-table">Membuat Table</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> barang
+(
+    kode <span class="hljs-type">INT</span>,
+    nama <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">100</span>),
+    harga <span class="hljs-type">INT</span>,
+    jumlah <span class="hljs-type">INT</span>
+) EGINE <span class="hljs-operator">=</span> InnoDB;
+</code></pre>
+<hr>
+<h2 id="melihat-struktur-table">Melihat Struktur Table</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">DESCRIBE</span> nama_tabel;
+</code></pre>
+<pre><code class="language-sql"><span class="hljs-keyword">DESC</span> nama_tabel;
+</code></pre>
+<pre><code class="language-sql"><span class="hljs-keyword">SHOW</span> <span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> nama_tabel;
+</code></pre>
+<hr>
+<h2 id="mengubah-table">Mengubah Table</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> barang
+    <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">COLUMN</span> nama_column TEXT,
+    <span class="hljs-keyword">DROP</span> <span class="hljs-keyword">COLUMN</span> nama,
+    RENAME <span class="hljs-keyword">COLUMN</span> nama <span class="hljs-keyword">to</span> nama_baru,
+    MODIFY nama <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">100</span>) AFTER jumlah,
+    MODIFY nama <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">100</span>) <span class="hljs-keyword">FIRST</span>;
+</code></pre>
+<hr>
+<h2 id="null-value">Null Value</h2>
+<ul>
+<li>Null adalah nilai ketika kita tidak mengisi data ke dalam kolom</li>
+<li>Secara default, saat kita membuat kolom, kolom tersebut bisa bernilai NULL, jika kita tidak ingin menerima nilai NULL, kita bisa menambahkan NOT NULL ketika pembuatan kolom nya</li>
+</ul>
+<hr>
+<h2 id="default-value">Default Value</h2>
+<ul>
+<li>Saat kita menyimpan data ke dalam tabel, lalu kita hanya menyimpan beberapa kolom (tidak semuanya), kolom yang tidak kita beri nilai secara default nilainya adalah NULL</li>
+<li>Jika kita ingin mengubah default value nya, kita bisa menambahkan perintah DEFAULT NILAI ketika pembuatan kolom nya</li>
+<li>Khusus tipe data DATETIME atau TIMESTAMP, jika kita ingin menggunakan default value dengan nilai waktu saat ini, kita bisa gunakan kata kunci CURRENT_TIMESTAMP</li>
+</ul>
+<hr>
+<h2 id="membuat-ulang-table">Membuat Ulang Table</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">TRUNCATE</span> nama_tabel;
+</code></pre>
+<hr>
+<h2 id="menghapus-table">Menghapus Table</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TABLE</span> nama_tabel;
+</code></pre>
+
+        
+        
+    </body>
+    </html>

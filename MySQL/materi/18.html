@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Alias</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="../assets/css/markdown.min.css">
+<link rel="stylesheet" href="../assets/css/highlight.min.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="alias">Alias</h1>
+<h2 id="alias-1">Alias</h2>
+<ul>
+<li>MySQL memiliki fitur untuk melakukan alias untuk kolom dan tabel</li>
+<li>Alias berguna jika kita ingin mengubah nama kolom atau nama tabel ketika melakukan SELECT data</li>
+<li>Mungkin saat ini alias untuk tabel tidak terlalu terlihat gunanya, tapi nanti ketika kita telah mempelajari tentang JOIN, maka fitur alias untuk tabel sangat berguna sekali</li>
+</ul>
+<hr>
+<h2 id="alias-untuk-kolom">Alias untuk Kolom</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> id <span class="hljs-keyword">AS</span> <span class="hljs-string">&#x27;Kode&#x27;</span>,
+    name <span class="hljs-keyword">AS</span> <span class="hljs-string">&#x27;Nama&#x27;</span>,
+    category <span class="hljs-keyword">AS</span> <span class="hljs-string">&#x27;Kategori&#x27;</span>,
+    price <span class="hljs-keyword">AS</span> <span class="hljs-string">&#x27;Harga&#x27;</span>,
+    quantity <span class="hljs-keyword">AS</span> <span class="hljs-string">&#x27;Stok&#x27;</span>
+<span class="hljs-keyword">FROM</span> products;
+</code></pre>
+<p><strong>Hasil :</strong></p>
+<p><img src="..\assets\img\17\1.PNG" alt="1"></p>
+<hr>
+<h2 id="alias-untuk-tabel">Alias untuk Tabel</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> p.id <span class="hljs-keyword">AS</span> <span class="hljs-string">&#x27;Kode&#x27;</span>,
+    p.name <span class="hljs-keyword">AS</span> <span class="hljs-string">&#x27;Nama&#x27;</span>,
+    p.category <span class="hljs-keyword">AS</span> <span class="hljs-string">&#x27;Kategori&#x27;</span>,
+    p.price <span class="hljs-keyword">AS</span> <span class="hljs-string">&#x27;Harga&#x27;</span>,
+    p.quantity <span class="hljs-keyword">AS</span> <span class="hljs-string">&#x27;Stok&#x27;</span>
+<span class="hljs-keyword">FROM</span> products <span class="hljs-keyword">AS</span> p;
+</code></pre>
+<p><strong>Hasil :</strong></p>
+<p><img src="..\assets\img\17\1.PNG" alt="1"></p>
+
+        
+        
+    </body>
+    </html>

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Where Operator</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="../assets/css/markdown.min.css">
+<link rel="stylesheet" href="../assets/css/highlight.min.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="where-operator">Where Operator</h1>
+<h2 id="where-operator-1">Where Operator</h2>
+<ul>
+<li>Sebelumnya di materi where clause kita sudah menggunakan operator = (sama dengan)</li>
+<li>Sebenarnya sangat banyak sekali operator yang bisa kita gunakan ketika menggunakan where clause</li>
+<li>Sekarang kita akan bahas satu per satu</li>
+</ul>
+<hr>
+<h2 id="operator-perbandingan">Operator Perbandingan</h2>
+<table border="1" width="100%">
+    <tr>
+        <th>Operator</th>
+        <th>Keterangan</th>
+    </tr>
+    <tr>
+        <td>=</td>
+        <td>Sama dengan1</td>
+    </tr>
+    <tr>
+        <td><></td>
+        <td>atau != Tidak sama dengan</td>
+    </tr>
+    <tr>
+        <td><</td>
+        <td>Kurang dari</td>
+    </tr>
+    <tr>
+        <td><=</td>
+        <td>Kurang dari atau sama dengan</td>
+    </tr>
+    <tr>
+        <td>></td>
+        <td>Lebih dari</td>
+    </tr>
+    <tr>
+        <td>>=</td>
+        <td>Lebih dari atau sama dengan</td>
+    </tr>
+</table>
+<hr>
+<h2 id="mencari-data-dengan-operator-perbandingan">Mencari Data dengan Operator Perbandingan</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> id, name, price, quantity
+<span class="hljs-keyword">FROM</span> products
+<span class="hljs-keyword">WHERE</span> quantity <span class="hljs-operator">&gt;</span> <span class="hljs-number">100</span>;
+</code></pre>
+<hr>
+<h2 id="and-dan-or-operator">AND dan OR Operator</h2>
+<ul>
+<li>Kadang kita ingin mencari data dengan beberapa gabungan kondisi, kita bisa menggunakan operator AND dan OR</li>
+<li>AND dan OR digunakan untuk menggabungkan beberapa dua operator</li>
+</ul>
+<hr>
+<h2 id="hasil-operator-and">Hasil Operator AND</h2>
+<table border="1" width="100%">
+    <tr>
+        <th>Hasil Operator 1</th>
+        <th>Operator</th>
+        <th>Hasil Operator 2</th>
+        <th>Hasil Akhir</th>
+    </tr>
+    <tr>
+        <td>Benar</td>
+        <td>AND</td>
+        <td>Benar</td>
+        <td>Benar</td>
+    </tr>
+    <tr>
+        <td>Salah</td>
+        <td>AND</td>
+        <td>Benar</td>
+        <td>Salah</td>
+    </tr>
+    <tr>
+        <td>Benar</td>
+        <td>AND</td>
+        <td>Salah</td>
+        <td>Salah</td>
+    </tr>
+    <tr>
+        <td>Salah</td>
+        <td>AND</td>
+        <td>Salah</td>
+        <td>Salah</td>
+    </tr>
+</table>
+<hr>
+<h2 id="mencari-data-dengan-operator-and">Mencari Data dengan Operator AND</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> id, name, price, quantity
+<span class="hljs-keyword">FROM</span> products
+<span class="hljs-keyword">WHERE</span> quantity <span class="hljs-operator">&gt;</span> <span class="hljs-number">100</span> <span class="hljs-keyword">AND</span> price <span class="hljs-operator">&gt;</span> <span class="hljs-number">100000</span>;
+</code></pre>
+<hr>
+<h2 id="hasil-operator-or">Hasil Operator OR</h2>
+<table border="1" width="100%">
+    <tr>
+        <th>Hasil Operator 1</th>
+        <th>Operator</th>
+        <th>Hasil Operator 2</th>
+        <th>Hasil Akhir</th>
+    </tr>
+    <tr>
+        <td>Benar</td>
+        <td>OR</td>
+        <td>Benar</td>
+        <td>Benar</td>
+    </tr>
+    <tr>
+        <td>Salah</td>
+        <td>OR</td>
+        <td>Benar</td>
+        <td>Benar</td>
+    </tr>
+    <tr>
+        <td>Benar</td>
+        <td>OR</td>
+        <td>Salah</td>
+        <td>Benar</td>
+    </tr>
+    <tr>
+        <td>Salah</td>
+        <td>OR</td>
+        <td>Salah</td>
+        <td>Salah</td>
+    </tr>
+</table>
+<hr>
+<h2 id="mencari-data-dengan-operator-or">Mencari Data dengan Operator OR</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> id, name, price, quantity
+<span class="hljs-keyword">FROM</span> products
+<span class="hljs-keyword">WHERE</span> quantity <span class="hljs-operator">&gt;</span> <span class="hljs-number">500</span> <span class="hljs-keyword">OR</span> price <span class="hljs-operator">&gt;</span> <span class="hljs-number">10000</span>;
+</code></pre>
+<hr>
+<h2 id="prioritas-dengan-kurung-">Prioritas dengan Kurung ()</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> id, name, price, quantity
+<span class="hljs-keyword">FROM</span> products
+<span class="hljs-keyword">WHERE</span> (category <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;Makanan&#x27;</span> <span class="hljs-keyword">OR</span> quantity <span class="hljs-operator">&gt;</span> <span class="hljs-number">500</span>) <span class="hljs-keyword">AND</span> price <span class="hljs-operator">&gt;</span> <span class="hljs-number">10000</span>;
+</code></pre>
+<hr>
+<h2 id="like-operator">LIKE Operator</h2>
+<ul>
+<li>LIKE operator adalah operator yang bisa kita gunakan untuk mencari sebagian data dalam String</li>
+<li>Ini cocok sekali ketika kita hanya ingin mencari sebagian kata dalam String</li>
+<li>Namun perlu diingat, operasi LIKE itu sangat lambat, oleh karena itu, tidak disarankan jika datanya sudah terlalu besar di tabel</li>
+<li>Operasi LIKE tidak case sensitive, jadi huruf besar dan kecil tidak akan berpengaruh</li>
+</ul>
+<hr>
+<h2 id="hasil-operator-like">Hasil Operator LIKE</h2>
+<table border="1" width="100%">
+    <tr>
+        <th>LIKE</th>
+        <th>Operator Hasil</th>
+    </tr>
+    <tr>
+        <td>LIKE ‘b%’</td>
+        <td>String dengan awalan b</td>
+    </tr>
+    <tr>
+        <td>LIKE ‘%a’</td>
+        <td>String dengan akhiran b</td>
+    </tr>
+    <tr>
+        <td>LIKE ‘%eko%’</td>
+        <td>String berisi eko</td>
+    </tr>
+    <tr>
+        <td>NOT LIKE</td>
+        <td>Tidak LIKE</td>
+    </tr>
+</table>
+<hr>
+<h2 id="mencari-menggunakan-like-operator">Mencari Menggunakan LIKE Operator</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span>
+<span class="hljs-keyword">FROM</span> products
+<span class="hljs-keyword">WHERE</span> name <span class="hljs-keyword">LIKE</span> <span class="hljs-string">&#x27;%mie%&#x27;</span>;
+</code></pre>
+<p><strong>Hasil :</strong></p>
+<p><img src="..\assets\img\19\1.PNG" alt="1"></p>
+<hr>
+<h2 id="null-operator">NULL Operator</h2>
+<ul>
+<li>Untuk mencari data yang berisi NULL, kita tidak bisa menggunakan operator perbandingan = NULL.</li>
+<li>Ada operator khusus untuk mencari data NULL, yaitu menggunakan NULL operator</li>
+<li>IS NULL, artinya mencari yang NULL</li>
+<li>IS NOT NULL, artinya mencari yang tidak NULL</li>
+</ul>
+<hr>
+<h2 id="mencari-menggunakan-null-operator">Mencari Menggunakan NULL Operator</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span>
+<span class="hljs-keyword">FROM</span> products
+<span class="hljs-keyword">WHERE</span> description <span class="hljs-keyword">IS</span> <span class="hljs-keyword">NULL</span>;
+</code></pre>
+<p><strong>Hasil :</strong></p>
+<p><img src="..\assets\img\19\2.PNG" alt="2"></p>
+<hr>
+<h2 id="between-operator">BETWEEN Operator</h2>
+<ul>
+<li>Kadang kita ingin mencari data yang &gt;= dan &lt;= secara sekaligus</li>
+<li>Misal kita ingin mencari products yang harganya antara 10000 sampai 20000</li>
+<li>Untuk melakukan ini, kita bisa menggunakan WHERE price &gt;= 10000 AND price &lt;= 20000</li>
+<li>Namun ada operator BETWEEN yang bisa kita gunakan agar lebih sederhana</li>
+<li>Untuk kebalikannya, kita bisa gunakan NOT BETWEEN</li>
+</ul>
+<hr>
+<h2 id="mencari-menggunakan-between-operator">Mencari Menggunakan BETWEEN Operator</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span>
+<span class="hljs-keyword">FROM</span> products
+<span class="hljs-keyword">WHERE</span> price <span class="hljs-keyword">BETWEEN</span> <span class="hljs-number">10000</span> <span class="hljs-keyword">AND</span> <span class="hljs-number">20000</span>;
+</code></pre>
+<p><strong>Hasil :</strong></p>
+<p><img src="..\assets\img\19\3.PNG" alt="3"></p>
+<hr>
+<h2 id="in-operator">IN Operator</h2>
+<ul>
+<li>Operator IN adalah operator untuk melakukan pencarian sebuah kolom dengan beberapa nilai.</li>
+<li>Misal kita ingin mencari products dengan category Makanan atau Minuman, maka kita bisa menggunakan operator IN</li>
+</ul>
+<hr>
+<h2 id="mencari-menggunakan-in-operator">Mencari Menggunakan IN Operator</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span>
+<span class="hljs-keyword">FROM</span> products
+<span class="hljs-keyword">WHERE</span> category <span class="hljs-keyword">IN</span> (<span class="hljs-string">&#x27;Makanan&#x27;</span>, <span class="hljs-string">&#x27;Minuman&#x27;</span>);
+</code></pre>
+<p><strong>Hasil :</strong></p>
+<p><img src="..\assets\img\19\4.PNG" alt="4"></p>
+
+        
+        
+    </body>
+    </html>

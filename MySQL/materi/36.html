@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>One to Many Relationship</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="../assets/css/markdown.min.css">
+<link rel="stylesheet" href="../assets/css/highlight.min.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="one-to-many-relationship">One to Many Relationship</h1>
+<hr>
+<h2 id="one-to-many-relationship-1">One to Many Relationship</h2>
+<ul>
+<li>One to many relationship adalah relasi antar tabel dimana satu data bisa digunakan lebih dari satu kali di tabel relasinya</li>
+<li>Berbeda dengan one to one yang cuma bisa digunakan maksimal 1 kali di tabel relasinya, one to many tidak ada batasan berapa banyak data digunakan</li>
+<li>Contoh relasi antar tabel categories dan products, dimana satu category bisa digunakan oleh lebih dari satu product, yang artinya relasinya nya one category to many products</li>
+<li>Pembuatan relasi one to many sebenarnya sama dengan one to one, yang membedakan adalah, kita tidak perlu menggunakan UNIQUE KEY, karena datanya memang bisa berkali-kali ditambahkan di tabel relasi nya</li>
+</ul>
+<hr>
+<h2 id="diagram-one-to-many-relationship">Diagram One to Many Relationship</h2>
+<p><img src="..\assets\img\36\1.PNG" alt="1"></p>
+<hr>
+<h2 id="membuat-table-category">Membuat Table Category</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> categories
+(
+    id <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">10</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span>,
+    name <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">100</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span>,
+    <span class="hljs-keyword">PRIMARY</span> KEY(id)
+) ENGINE <span class="hljs-operator">=</span> InnoDB;
+</code></pre>
+<hr>
+<h2 id="mengubah-tabel-product">Mengubah Tabel Product</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> products
+    <span class="hljs-keyword">DROP</span> <span class="hljs-keyword">COLUMN</span> category;
+
+<span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> products
+    <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">COLUMN</span> id_category <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">100</span>);
+
+<span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> products
+    <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">CONSTRAINT</span> fk_product_category
+    <span class="hljs-keyword">FOREIGN</span> KEY (id_category) <span class="hljs-keyword">REFERENCES</span> categories (id);
+</code></pre>
+
+        
+        
+    </body>
+    </html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Implementasi Model Data Relational</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="../assets/css/markdown.min.css">
+<link rel="stylesheet" href="../assets/css/highlight.min.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="implementasi-model-data-relational">Implementasi Model Data Relational</h1>
+<h2 id="menambah-relasi-one-to-one">Menambah Relasi One to One</h2>
+<ul>
+<li>Sebelum kita lanjut, kita akan coba tambahkan Entity yang berelasi One to One di kasus Toko Online kita</li>
+<li>Misal di kasus Toko Online, kita akan menambahkan Entity Dompet, dimana Pembeli hanya bisa memiliki satu Dompet, dan satu Dompet hanya dimiliki oleh satu Pembeli</li>
+<li>Dan di Dompet, kita akan tambahkan Attribute Key Email, dan Attribute Saldo</li>
+</ul>
+<hr>
+<h2 id="diagram--one-to-one">Diagram : One to One</h2>
+<p><img src="..\assets\img\8\1.PNG" alt="1"></p>
+<hr>
+<h2 id="implementasi-one-to-one">Implementasi One to One</h2>
+<ul>
+<li>Pada kasus implementasi relasi One to One, terdapat dua cara</li>
+<li>Jika pada kasus tiap Entity dipastikan menggunakan Attribute Key dengan nilai sama, maka kita bisa gunakan Attribute Key di tiap Entity sebagai acuan untuk saling berelasi</li>
+<li>Namun jika pada kasus tiap Entity bisa memiliki Attribute Key yang berbeda, maka kita perlu membuat Attribute Foreign Key di salah satu Entity yang lebih lemah, dimana Attribute Foreign Key tersebut harus unique (tidak boleh ada yang sama)</li>
+</ul>
+<hr>
+<h2 id="diagram--implementasi-one-to-one">Diagram : Implementasi One to One</h2>
+<p><img src="..\assets\img\8\2.PNG" alt="2"></p>
+<hr>
+<h2 id="implementasi-one-to-many-atau-many-to-one">Implementasi One to Many atau Many to One</h2>
+<ul>
+<li>Pada kasus relasi One to Many, implementasinya tergantung relasi nya</li>
+<li>Jika pada kasus relasinya terdapat Attribute deskriptif, maka diperlukan tabel baru sebagai implementasi dari Relationship nya</li>
+<li>Namun pada kasus relasinya tidak memiliki Attribute deskriptif, maka tidak perlu tabel baru, kita hanya butuh menambah Attribute Foreign Key di Entity yang bersifat Many</li>
+</ul>
+<hr>
+<h2 id="diagram--implementasi-one-to-many">Diagram : Implementasi One to Many</h2>
+<p><img src="..\assets\img\8\3.PNG" alt="3"></p>
+<hr>
+<h2 id="implementasi-many-to-many">Implementasi Many to Many</h2>
+<ul>
+<li>Pada implementasi relasi Many to Many, maka diimplementasikan dalam bentuk tabel relasi</li>
+<li>Dimana di dalam tabel relasi tersebut terdapat semua Attribute Foreign Key dari semua Entity yang berelasi</li>
+</ul>
+<hr>
+<h2 id="diagram--implementasi-many-to-many">Diagram : Implementasi Many to Many</h2>
+<p><img src="..\assets\img\8\4.PNG" alt="4"></p>
+
+        
+        
+    </body>
+    </html>

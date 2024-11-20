@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Primary Key</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="../assets/css/markdown.min.css">
+<link rel="stylesheet" href="../assets/css/highlight.min.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="primary-key">Primary Key</h1>
+<h2 id="primary-key-1">Primary Key</h2>
+<ul>
+<li>Saat kita membuat tabel, idealnya tiap tabel memiliki Primary Key</li>
+<li>Primary key adalah sebuah kolom yang kita tunjuk sebagai id dari tabel tersebut</li>
+<li>Primary key adalah identitas untuk tiap baris data di dalam tabel</li>
+<li>Primary key harus unik, tidak boleh ada data dengan primary key yang sama</li>
+<li>Kita bisa menunjuk kolom yang akan kita jadikan primary key</li>
+</ul>
+<hr>
+<h2 id="primary-key-di-multiple-column">Primary Key di Multiple Column</h2>
+<ul>
+<li>Kita bisa membuat primary key dengan kombinasi beberapa kolom</li>
+<li>Namun disarankan untuk tetap menggunakan satu kolom ketika membuat primary key</li>
+<li>Kecuali ada kasus khusus, seperti membuat tabel yang berelasi MANY TO MANY (yang nanti akan kita bahas)</li>
+</ul>
+<hr>
+<h2 id="menambah-primary-key-ketika-membuat-tabel">Menambah Primary Key Ketika Membuat Tabel</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> products
+(
+    id <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">10</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span>,
+    name <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">100</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span>,
+    description TEXT,
+    price  <span class="hljs-type">INT</span> UNSIGNED <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span>,
+    quantity <span class="hljs-type">INT</span> UNSIGNED <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-number">0</span>,
+    created_at <span class="hljs-type">TIMESTAMP</span> <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-built_in">CURRENT_TIMESTAMP</span>,
+    <span class="hljs-keyword">PRIMARY</span> KEY (id)
+) ENGINE <span class="hljs-operator">=</span> InnoDB;
+</code></pre>
+<hr>
+<h2 id="menambah-primary-key-di-tabel">Menambah Primary Key di Tabel</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> products
+    <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">PRIMARY</span> KEY (id);
+</code></pre>
+
+        
+        
+    </body>
+    </html>

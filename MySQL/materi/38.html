@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Jenis-Jenis Join</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="../assets/css/markdown.min.css">
+<link rel="stylesheet" href="../assets/css/highlight.min.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="jenis-jenis-join">Jenis-Jenis Join</h1>
+<hr>
+<h2 id="jenis-jenis-join-1">Jenis-Jenis Join</h2>
+<p>Sebelumnya kita sudah bahas tentang JOIN table, tapi sebenarnya ada banyak sekali jenis-jenis JOIN table di MySQL, diantaranya :</p>
+<ul>
+<li>INNER JOIN</li>
+<li>LEFT JOIN</li>
+<li>RIGHT JOIN</li>
+<li>CROSS JOIN</li>
+</ul>
+<hr>
+<h2 id="inner-join">Inner Join</h2>
+<ul>
+<li>INNER JOIN adalah mekanisme JOIN, dimana terdapat relasi antara tabel pertama dan tabel kedua</li>
+<li>Jika ada data di tabel pertama yang tidak memiliki relasi di table kedua ataupun sebaliknya, maka hasil INNER JOIN tidak akan ditampilkan</li>
+<li>Ini adalah default JOIN di MySQL</li>
+<li>Jika kita menggunakan JOIN seperti yang sudah kita praktekan sebelumnya, sebenarnya itu akan melakukan INNER JOIN</li>
+</ul>
+<hr>
+<h2 id="inner-join-diagram">Inner Join Diagram</h2>
+<p><img src="..\assets\img\38\1.PNG" alt="1"></p>
+<hr>
+<h2 id="melakukan-inner-join">Melakukan Inner Join</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> categories
+<span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> products <span class="hljs-keyword">ON</span> (products.id_category <span class="hljs-operator">=</span> categories.id);
+</code></pre>
+<p><strong>Hasil :</strong></p>
+<p><img src="..\assets\img\38\2.PNG" alt="2"></p>
+<hr>
+<h2 id="left-join">Left Join</h2>
+<ul>
+<li>LEFT JOIN adalah mekanisme JOIN seperti INNER JOIN, namun semua data di table pertama akan diambil juga</li>
+<li>Jika ada yang tidak memiliki relasi di table kedua, maka hasilnya akan NULL</li>
+</ul>
+<hr>
+<h2 id="left-join-diagram">Left Join Diagram</h2>
+<p><img src="..\assets\img\38\3.PNG" alt="3"></p>
+<hr>
+<h2 id="melakukan-left-join">Melakukan Left Join</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> categories
+<span class="hljs-keyword">LEFT</span> <span class="hljs-keyword">JOIN</span> products <span class="hljs-keyword">ON</span> (products.id_category <span class="hljs-operator">=</span> categories.id);
+</code></pre>
+<p><strong>Hasil :</strong></p>
+<p><img src="..\assets\img\38\4.PNG" alt="4"></p>
+<hr>
+<h2 id="right-join">Right Join</h2>
+<ul>
+<li>RIGHT JOIN adalah mekanisme JOIN seperti INNER JOIN, namun semua data di table kedua akan diambil juga</li>
+<li>Jika ada yang tidak memiliki relasi di table pertama, maka hasilnya akan NULL</li>
+</ul>
+<hr>
+<h2 id="right-join-diagram">Right Join Diagram</h2>
+<p><img src="..\assets\img\38\5.PNG" alt="5"></p>
+<hr>
+<h2 id="melakukan-right-join">Melakukan Right Join</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> categories
+<span class="hljs-keyword">RIGHT</span> <span class="hljs-keyword">JOIN</span> products <span class="hljs-keyword">ON</span> (products.id_category <span class="hljs-operator">=</span> categories.id);
+</code></pre>
+<p><strong>Hasil :</strong></p>
+<p><img src="..\assets\img\38\6.PNG" alt="6"></p>
+<hr>
+<h2 id="cross-join">Cross Join</h2>
+<ul>
+<li>CROSS JOIN adalah salah satu JOIN yang sangat jangan sekali digunakan</li>
+<li>CROSS JOIN adalah melakukan join dengan cara mengkalikan data di tabel pertama dengan dada di table kedua</li>
+<li>Artinya jika ada 5 data di tabel pertama, dan 5 data di tabel kedua, akan menghasilkan 25 kombinasi data (5 x 5)</li>
+<li>Sekali lagi perlu diingat, ini adalah JOIN yang sangat jarang sekali digunakan</li>
+</ul>
+<hr>
+<h2 id="menggunakan-cross-join">Menggunakan Cross Join</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> categories
+<span class="hljs-keyword">CROSS</span> <span class="hljs-keyword">JOIN</span> products;
+</code></pre>
+<p><strong>Hasil :</strong></p>
+<p><img src="..\assets\img\38\7.PNG" alt="7"></p>
+<hr>
+<h2 id="membuat-tabel-perkalian">Membuat Tabel Perkalian</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> numbers
+(
+    id <span class="hljs-type">INT</span> <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span>,
+    <span class="hljs-keyword">PRIMARY</span> KEY(id)
+) ENGINE <span class="hljs-operator">=</span> InnoDB;
+</code></pre>
+<h1 id="input-data">Input Data</h1>
+<pre><code class="language-sql"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> numbers (id)
+<span class="hljs-keyword">VALUES</span> (<span class="hljs-number">1</span>), (<span class="hljs-number">2</span>), (<span class="hljs-number">3</span>), (<span class="hljs-number">4</span>), (<span class="hljs-number">5</span>);
+</code></pre>
+<hr>
+<h2 id="cross-join-tabel-perkalian">Cross Join Tabel Perkalian</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> number1.id, number2.id, (number1.id <span class="hljs-operator">*</span> number2.id) <span class="hljs-keyword">AS</span> <span class="hljs-keyword">result</span>
+<span class="hljs-keyword">FROM</span> numbers <span class="hljs-keyword">as</span> number1
+    <span class="hljs-keyword">CROSS</span> <span class="hljs-keyword">JOIN</span> numbers <span class="hljs-keyword">as</span> number2
+<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> number1.id, number2.id;
+</code></pre>
+<p><strong>Hasil :</strong></p>
+<p><img src="..\assets\img\38\8.PNG" alt="8"></p>
+
+        
+        
+    </body>
+    </html>

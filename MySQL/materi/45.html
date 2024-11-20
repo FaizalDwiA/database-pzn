@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Restore Database</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="../assets/css/markdown.min.css">
+<link rel="stylesheet" href="../assets/css/highlight.min.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="restore-database">Restore Database</h1>
+<h2 id="restore-database-1">Restore Database</h2>
+<p>● Selain melakukan backup database, di MySQL juga kita bisa melakukan proses restore data dari file hasil backup<br>
+● Untuk melakukan restore database, kita bisa menggunakan aplikasi mysql client atau menggunakan perintah SOURCE di MySQL</p>
+<hr>
+<h2 id="melakukan-import-database">Melakukan Import Database</h2>
+<pre><code class="language-sql">mysql <span class="hljs-comment">--user root --password belajar_mysql_import &lt; &quot;/Users/Program Is Fun/Desktop/belajar_mysql.sql&quot;;</span>
+</code></pre>
+<pre><code class="language-sql">mysql <span class="hljs-operator">-</span>uroot <span class="hljs-operator">-</span>p belajar_mysql_import <span class="hljs-operator">&lt;</span> &quot;/Users/Program Is Fun/Desktop/belajar_mysql.sql&quot;;
+</code></pre>
+<p><img src="..\assets\img\45\1.PNG" alt="1"></p>
+<hr>
+<h2 id="import-database-menggunakan-sql">Import Database Menggunakan SQL</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">CREATE</span> DATABASE belajar_mysql_backup_lagi;
+
+USE belajar_mysql_backup_lagi;
+
+SOURCE <span class="hljs-operator">/</span>Users<span class="hljs-operator">/</span>Program <span class="hljs-keyword">Is</span> Fun<span class="hljs-operator">/</span>Desktop<span class="hljs-operator">/</span>belajar_mysql.sql;
+</code></pre>
+
+        
+        
+    </body>
+    </html>

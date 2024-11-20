@@ -1,0 +1,53 @@
+PRODUCTS;
+
+INSERT INTO products(id, name, description, price, quantity)
+VALUES ('P001', 'Bakso', 'Bakso Enak', 10000, 20),
+('P002', 'Mie Ayam', 'Mie Ayam Wonogiri', 8000, 40),
+('P003', 'Roti Bakar', 'Roti Bakar Bandung', 13000, 50),
+('P004', 'Martabak', 'Martabak Murah', 4000, 100);
+
+wishlist
+
+INSERT INTO wishlist(id_product, description)
+VALUES ('P001', 'enak'),
+('P002', 'khas'),
+('P003', 'spesial'),
+('P004', 'murah');
+
+customers
+
+INSERT INTO customers(email, first_name, last_name)
+VALUES ('faizal@gmail.com', 'faizal', 'dwi'),
+('black@gmail.com', 'black', 'thunder'),
+('dragon@gmail.com', 'dragon', 'fire'),
+('syiber@gmail.com', 'syiber', 'green');
+
+
+orders
+INSERT INTO orders(total)
+VALUES (10000), (8000), (13000), (4000);
+
+orders_detail
+
+INSERT INTO orders_detail(id_product, id_order, price, quantity)
+VALUES ('P001', 1, 10000, 20),
+('P002', 2, 8000, 40),
+('P003', 3, 13000, 50),
+('P004', 4, 4000, 100);
+
+
+categories
+INSERT INTO categories(id, name)
+VALUES (1, 'Makanan'),
+(2, 'Minuman'),
+(3, 'Jajanan'),
+(4, 'Lain-lain');
+
+
+guestbooks
+INSERT INTO guestbooks(email, title, content)
+VALUES ('faizal@gmail.com', 'hello', 'hello'),
+('dwi@gmail.com', 'hello', 'hello'),
+('alfarizi@gmail.com', 'hello', 'hello'),
+('black@gmail.com', 'hello', 'hello'),
+('syiber@gmail.com', 'hello', 'hello');

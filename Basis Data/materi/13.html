@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Jenis Atribut</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="../assets/css/markdown.min.css">
+<link rel="stylesheet" href="../assets/css/highlight.min.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="jenis-atribut">Jenis Atribut</h1>
+<h2 id="jenis-attribute">Jenis Attribute</h2>
+<ul>
+<li>Sebelum kita mulai bahas tentang normalisasi data, ada yang perlu diketahui tentang jenis attribute, seperti</li>
+<li>Attribute Key</li>
+<li>Simple Attribute dan Composite Attribute</li>
+<li>Single-Value Attribute dan Multi-Value Attribute</li>
+<li>Mandatory Attribute</li>
+<li>Derived Attribute</li>
+</ul>
+<hr>
+<h2 id="attribute-key">Attribute Key</h2>
+<ul>
+<li>Key adalah nilai yang bisa digunakan sebagai identitas baris pada tabel yang sifatnya unik</li>
+<li>Biasanya Attribute Key dibilang juga dengan nama Primary Key</li>
+<li>Attribute Key milik entitas lain yang disimpan sebagai atribut di entitas lain, disebut Foreign Key</li>
+</ul>
+<hr>
+<h2 id="simple-attribute-dan-composite-attribute">Simple Attribute dan Composite Attribute</h2>
+<ul>
+<li>Simple attribute adalah atribut yang tidak bisa diuraikan lagi, sedangkan composite attribute adalah atribut yang masih bisa diuraikan</li>
+<li>Pada kasus tabel kita, semua kolom sudah simple attribute, karena tidak bisa diuraikan lagi</li>
+<li>Seandainya misal kita ada kolom alamat yang berisikan kombinasi dari jalan kota provinsi negara dan kodepos, maka bisa dibilang kolom alamat tersebut adalah composite attribute</li>
+</ul>
+<hr>
+<h2 id="single-value-dan-multi-value-attribute">Single-Value dan Multi-Value Attribute</h2>
+<ul>
+<li>Single-value attribute adalah atribut yang memiliki satu nilai, sedangkan multi-value attribute adalah atribut yang memiliki nilai lebih dari satu</li>
+<li>Pada kasus tabel kita, kita sudah membuat semua kolom menjadi single-value attribute</li>
+<li>Seandainya kita gabungkan semua produk di satu kolom, maka bisa jadi itu adalah multi-value attribute</li>
+</ul>
+<hr>
+<h2 id="mandatory-attribute">Mandatory Attribute</h2>
+<ul>
+<li>Mandatory attribute adalah atribut yang wajib diisi atau tidak boleh kosong (NULL)</li>
+<li>Pada kasus kita, produk 2,3 dan 4 adalah kolom yang tidak mandatory, karena bisa kosong</li>
+</ul>
+<hr>
+<h2 id="derived-attribute">Derived Attribute</h2>
+<ul>
+<li>Derived attribute (atribut turunan) adalah atribut yang nilainya diperoleh dari hasil pengolahan atribut lain</li>
+<li>Pada kasus kita, contohnya banyak sekali derived attribute, seperti produk total, total belanja, total berat dan lain-lain</li>
+</ul>
+
+        
+        
+    </body>
+    </html>

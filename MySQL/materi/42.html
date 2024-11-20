@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Locking</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="../assets/css/markdown.min.css">
+<link rel="stylesheet" href="../assets/css/highlight.min.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="locking">Locking</h1>
+<hr>
+<h2 id="locking-1">Locking</h2>
+<ul>
+<li>Locking adalah proses mengunci data di DBMS</li>
+<li>Proses mengunci data sangat penting dilakukan, salah satunya agar data benar-benar terjamin konsistensinya</li>
+<li>Karena pada kenyataannya, aplikasi yang akan kita buat pasti digunakan oleh banyak pengguna, dan banyak pengguna tersebut bisa saja akan mengakses data yang sama, jika tidak ada proses locking, bisa dipastikan akan terjadi RACE CONDITION, yaitu proses balapan ketika mengubah data yang sama</li>
+<li>Contoh saja, ketika kita belanja di toko online, kita akan balapan membeli barang yang sama, jika data tidak terjaga, bisa jadi kita salah mengupdate stock karena pada saat yang bersamaan banyak yang melakukan perubahan stock barang</li>
+</ul>
+<hr>
+<h2 id="locking-record">Locking Record</h2>
+<ul>
+<li>Saat kita melakukan proses TRANSACTION, lalu kita melakukan prose perubahan data, data yang kita ubah tersebut akan secara otomatis di LOCK</li>
+<li>Hal ini membuat proses TRANSACTION sangat aman</li>
+<li>Oleh karena itu, sangat disarankan untuk selalu menggunakan fitur TRANSACTION ketika memanipulasi data di database, terutama ketika perintah manipulasinya lebih dari satu kali</li>
+<li>Locking ini akan membuat sebuah proses perubahan yang dilakukan oleh pihak lain akan diminta untuk menunggu</li>
+<li>Data akan di lock sampai kita melakukan COMMIT atau ROLLBACK transaksi tersebut</li>
+</ul>
+<p><img src="..\assets\img\42\1.PNG" alt="1"></p>
+<hr>
+<h2 id="locking-record-manual">Locking Record Manual</h2>
+<ul>
+<li>Selain secara otomatis, kadang saat kita membuat aplikasi, kita juga sering melakukan SELECT query terlebih dahulu sebelum melakukan proses UPDATE misalnya.</li>
+<li>Jika kita ingin melakukan locking sebuah data secara manual, kita bisa tambahkan perintah FOR UPDATE di belakang query SELECT</li>
+<li>Saat kita lock record yang kita select, maka jika ada proses lain akan melakukan UPDATE, DELETE atau SELECT FOR UPDATE lagi, maka proses lain diminta menunggu sampai kita selesai melakukan COMMIT atau ROLLBACK transaction</li>
+</ul>
+<p><img src="..\assets\img\42\2.PNG" alt="2"></p>
+<hr>
+<h2 id="deadlock">Deadlock</h2>
+<ul>
+<li>Saat kita terlalu banyak melakukan proses Locking, hati-hati akan masalah yang bisa terjadi, yaitu DEADLOCK</li>
+<li>Deadlock adalah situasi ada 2 proses yang saling menunggu satu sama lain, namun data yang ditunggu dua-duanya di lock oleh proses lainnya, sehingga proses menunggunya ini tidak akan pernah selesai.</li>
+</ul>
+<hr>
+<h2 id="contoh-deadlock">Contoh Deadlock</h2>
+<ul>
+<li>Proses 1 melakukan SELECT FOR UPDATE untuk data 001</li>
+<li>Proses 2 melakukan SELECT FOR UPDATE untuk data 002</li>
+<li>Proses 1 melakukan SELECT FOR UPDATE untuk data 002, diminta menunggu karena di lock oleh Proses 2</li>
+<li>Proses 2 melakukan SELECT FOR UPDATE untuk data 001, diminta menunggu karena di lock oleh Proses 1</li>
+<li>Akhirnya Proses 1 dan Proses 2 saling menunggu</li>
+<li>Deadlock terjadi</li>
+</ul>
+<p><img src="..\assets\img\42\3.PNG" alt="3"></p>
+<hr>
+<h2 id="locking-table">Locking Table</h2>
+<ul>
+<li>MySQL mendukung proses locking terhadap sebuah tabel</li>
+<li>Jika kita me lock table, artinya satu seluruh data di tabel tersebut akan di lock</li>
+<li>Ada 2 jenis lock table, yaitu READ dan WRITE</li>
+<li>Cara melakukan locking table adalah dengan perintah</li>
+</ul>
+<pre><code class="language-sql">LOCK TABLES nama_table READ;
+</code></pre>
+<p><img src="..\assets\img\42\4.PNG" alt="4"></p>
+<pre><code class="language-sql">LOCK TABLES nama_Table WRITE
+</code></pre>
+<p><img src="..\assets\img\42\5.PNG" alt="5"></p>
+<ul>
+<li>Setelah selesai melakukan lock table, kita bisa melakukan unlock dengan perintah :</li>
+</ul>
+<pre><code class="language-sql">UNLOCK TABLES;
+</code></pre>
+<hr>
+<h2 id="behaviour-lock-tables">Behaviour Lock Tables</h2>
+<table border="1" width="100%">
+    <tr>
+        <th>Perintah</th>
+        <th>Proses yang Melakukan Lock</th>
+        <th>Proses lain</th>
+    </tr>
+    <tr>
+        <td>READ</td>
+        <td>Hanya bisa melakukan read terhadap tabel tersebut</td>
+        <td>Hanya bisa melakukan read terhadap tabel tersebut, tidak bisa melakukan write</td>
+    </tr>
+    <tr>
+        <td>WRITE</td>
+        <td>Bisa melakukan read dan write terhadap tabel tersebut</td>
+        <td>Tidak bisa melakukan read dan write</td>
+    </tr>
+</table>
+<hr>
+<h2 id="locking-instance">Locking Instance</h2>
+<ul>
+<li>Salah satu fitur lock lainnya di MySQL adalah lock instance</li>
+<li>Lock instance adalah perintah locking yang akan membuat perintah DDL (data definition language) akan diminta menunggu sampai proses unlock instance</li>
+<li>Biasanya proses locking instance ini terjadi ketika misal kita ingin melakukan backup data, agar tidak terjadi perubahan terhadap struktur tabel misalnya, kita bisa melakukan locking instance</li>
+<li>Setelah proses backup selesai, baru kita unlock lagi instance nya</li>
+<li>Untuk melakukan locking instance, kita bisa gunakan perintah :</li>
+</ul>
+<pre><code class="language-sql">LOCK INSTANCE <span class="hljs-keyword">FOR</span> BACKUP;
+</code></pre>
+<ul>
+<li>Untuk melakukan unlock instance, kita bisa gunakan perintah :</li>
+</ul>
+<pre><code class="language-sql">UNLOCK INSTANCE;
+</code></pre>
+<p><img src="..\assets\img\42\6.PNG" alt="6"></p>
+
+        
+        
+    </body>
+    </html>

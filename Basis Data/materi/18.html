@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Denormalisasi Data</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="../assets/css/markdown.min.css">
+<link rel="stylesheet" href="../assets/css/highlight.min.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="denormalisasi-data">Denormalisasi Data</h1>
+<h2 id="denormalisasi-data-1">Denormalisasi Data</h2>
+<ul>
+<li>Normalisasi data digunakan untuk membuat model basis data yang baik</li>
+<li>Normalisasi data sebenarnya hanyalah petunjuk saja, dalam keadaan tertentu, kadang kita bisa melanggar aturan dari normalisasi data</li>
+<li>Pelanggaran normalisasi data tersebut kita sebut denormalisasi data</li>
+<li>Alasan kita melakukan denormalisasi data, adalah untuk mendapatkan performa yang lebih baik</li>
+<li>Dan denormalisasi data sering sekali dilakukan di dunia nyata</li>
+<li>Ada banyak sekali cara melakukan denormalisasi data, namun inti dari denormalisasi data adalah meningkatkan performa kecepatan mendapat data</li>
+</ul>
+<hr>
+<h2 id="derived-attribute">Derived Attribute</h2>
+<ul>
+<li>Sebelumnya pada saat melakukan normalisasi data, kita menghapus atribut turunan</li>
+<li>Jika ternyata hal ini memperlambat proses mencari data, yang artinya kita harus mengolah data total belanja, total berat dan total harga, maka kita bisa melakukan denormalisasi data dengan menambahkan derived attribute</li>
+<li><a href="https://docs.google.com/spreadsheets/d/1epqlWZiTkCmAWJRy_h2K35PjO9f60vVR6uDbKSRjK9k/edit#gid=773462852">https://docs.google.com/spreadsheets/d/1epqlWZiTkCmAWJRy_h2K35PjO9f60vVR6uDbKSRjK9k/edit#gid=773462852</a></li>
+<li><a href="../assets/table/Denormalisasi Derived Attribute.html">Denormalisasi Derived Attribute</a></li>
+</ul>
+<hr>
+<h2 id="atribut-tambahan">Atribut Tambahan</h2>
+<ul>
+<li>Seperti yang dibahas di normalisasi data, atribut yang tidak memiliki ketergantungan fungsionalitas, seharusnya dipisahkan dalam tabel sendiri</li>
+<li>Namun, kadang menambahkan atribut tambahan bisa mempercepat proses pencarian</li>
+<li>Contoh, jika kita ingin mencari semua Order untuk Pembeli Joko, maka kita harus mencari dulu ke tabel Alamat, baru dari sana kita bisa lihat kode alamat yang terdapat di Order</li>
+<li>Begitu juga ketika kita ingin mencari semua Order ke Penjual Galeri Olahraga, maka kita harus mencari dulu ke tabel Produk, lalu harus mencari relasi ke tabel DetailOrder, dan baru mencari lagi relasi ke tabel Order</li>
+<li>Penambahan kode pembeli dan kode penjual di tabel Order bisa mempercepat proses pencarian</li>
+<li><a href="https://docs.google.com/spreadsheets/d/1epqlWZiTkCmAWJRy_h2K35PjO9f60vVR6uDbKSRjK9k/edit#gid=1008033348">https://docs.google.com/spreadsheets/d/1epqlWZiTkCmAWJRy_h2K35PjO9f60vVR6uDbKSRjK9k/edit#gid=1008033348</a></li>
+<li><a href="../assets/table/Denormalisasi Additional Attribute.html">Denormalisasi Additional Attribute</a></li>
+</ul>
+<hr>
+<h2 id="summary-table">Summary Table</h2>
+<ul>
+<li>Summary table (tabel rekapitulasi) adalah tabel yang biasanya dibuat hasil dari pengolahan data dari tabel master / detail / asli</li>
+<li>Pada kasus sebelumnya, kita tidak membuat tabel rekapitulasi, namun misal saja kita akan menambahkan fitur, dimana penjual bisa melihat laporan penjualan bulanan</li>
+<li>Dengan normalisasi data, hal itu bisa kita dapatkan laporannya dengan cara mengolah data seluruh order dan detail order dalam per bulan</li>
+<li>Hal ini akan memberatkan jika kita sering sekali membutuhkan laporan bulanan, maka ada baiknya kita membuat summary table untuk laporan penjualan per bulan</li>
+<li><a href="https://docs.google.com/spreadsheets/d/1epqlWZiTkCmAWJRy_h2K35PjO9f60vVR6uDbKSRjK9k/edit#gid=868482734">https://docs.google.com/spreadsheets/d/1epqlWZiTkCmAWJRy_h2K35PjO9f60vVR6uDbKSRjK9k/edit#gid=868482734</a></li>
+<li><a href="../assets/table/Denormalisasi Summary Table.html">Denormalisasi Summary Table</a></li>
+</ul>
+<hr>
+<h2 id="atribut-untuk-pencarian">Atribut untuk Pencarian</h2>
+<ul>
+<li>Pada beberapa kasus, kadang kita butuh melakukan pencarian dengan berbagai jenis kriteria</li>
+<li>Misal, pada Produk, kadang kita ingin mencari data produk menggunakan nama, namun tanpa peduli huruf besar kecilnya (case insensitive)</li>
+<li>Pada kasus seperti ini, kita bisa menambah atribut tambahan untuk pencarian, misal Nama Produk Lower, dimana isinya adalah nama produk dalam bentuk huruf kecil</li>
+<li>Dengan begitu, ketika melakukan pencarian dengan nama produk, kita bisa menggunakan atribut untuk pencarian tersebut</li>
+<li><a href="https://docs.google.com/spreadsheets/d/1epqlWZiTkCmAWJRy_h2K35PjO9f60vVR6uDbKSRjK9k/edit#gid=406958892">https://docs.google.com/spreadsheets/d/1epqlWZiTkCmAWJRy_h2K35PjO9f60vVR6uDbKSRjK9k/edit#gid=406958892</a></li>
+<li><a href="../assets/table/Denormalisasi Attribute for Search.html">Denormalisasi Attribute for Search</a></li>
+</ul>
+<hr>
+<h2 id="immutable-dan-mutable-table">Immutable dan Mutable Table</h2>
+<ul>
+<li>Saat kita membuat tabel, rata-rata adalah mutable table (tabel yang bisa diubah), contohnya adalah semua tabel yang sudah kita buat</li>
+<li>Namun pada kasus tertentu, kadang ada tabel yang sifatnya immutable table (tabel yang tidak boleh diubah), artinya hanya boleh memasukkan data, tidak boleh diubah lagi</li>
+<li>Pada kasus Order, sebenarnya idealnya adalah datanya immutable table, kenapa? Karena penjualan yang sudah terjadi, tidak boleh berubah lagi ketika di masa depan misal terjadi perubahan data, misal ketika harga produk berubah, nama produk berubah, dan lain-lain</li>
+<li>Seandainya misal pada kasus kita, kita ingin menjadikan Order adalah data yang immutable, artinya semua data yang berasal dari tabel master / detail / aslinya, maka harus kita duplikasi ke tabel immutable nya</li>
+<li><a href="https://docs.google.com/spreadsheets/d/1epqlWZiTkCmAWJRy_h2K35PjO9f60vVR6uDbKSRjK9k/edit#gid=1726629969">https://docs.google.com/spreadsheets/d/1epqlWZiTkCmAWJRy_h2K35PjO9f60vVR6uDbKSRjK9k/edit#gid=1726629969</a></li>
+<li><a href="../assets/table/Denormalisasi Immutable Table.html">Denormalisasi Immutable Table</a></li>
+</ul>
+
+        
+        
+    </body>
+    </html>

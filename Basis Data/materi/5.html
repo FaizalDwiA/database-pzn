@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Implementasi Model Data</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="../assets/css/markdown.min.css">
+<link rel="stylesheet" href="../assets/css/highlight.min.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="implementasi-model-data">Implementasi Model Data</h1>
+<h2 id="implementasi-model-data-1">Implementasi Model Data</h2>
+<ul>
+<li>Implementasi model data merupakan tahapan untuk membuat basis data secara fisik yang ditempatkan dalam disk dengan bantuan sistem basis data</li>
+<li>Setelah selesai membuat ERD, kita bisa mulai membuat implementasi nya dalam basis data</li>
+</ul>
+<hr>
+<h2 id="implementasi-umum">Implementasi Umum</h2>
+<ul>
+<li>Secara umum, Entity yang kita buat di dalam ERD akan menjadi tabel di dalam basis data</li>
+<li>Dan Attribute yang kita buat dalam ERD, akan menjadi kolom di tabel di dalam basis data</li>
+</ul>
+<hr>
+<h2 id="diagram--implementasi-entity-pelanggan">Diagram : Implementasi Entity Pelanggan</h2>
+<p><img src="..\assets\img\5\1.PNG" alt="1"></p>
+<hr>
+<h2 id="diagram--implementasi-entity-penjual">Diagram : Implementasi Entity Penjual</h2>
+<p><img src="..\assets\img\5\2.PNG" alt="2"></p>
+<hr>
+<h2 id="diagram--implementasi-entity-barang">Diagram : Implementasi Entity Barang</h2>
+<p><img src="..\assets\img\5\3.PNG" alt="3"></p>
+<hr>
+<h2 id="kamus-data">Kamus Data</h2>
+<ul>
+<li>Dalam sistem basis data, setiap kolom di tabel yang kita buat perlu ditentukan tipe datanya</li>
+<li>Penentuan tipe data biasanya mengikuti tipe data yang tersedia di sistem basis data yang kita gunakan</li>
+<li>Secara umum ada beberapa tipe data yang umum biasa digunakan di sistem basis data</li>
+</ul>
+<hr>
+<h2 id="tipe-data">Tipe Data</h2>
+<ul>
+<li>Text, untuk kolom yang berisikan data karakter, misal Nama, Alamat, dan sejenisnya</li>
+<li>Number, untuk kolom yang berisikan data angka, misal Harga, Stok, dan sejenisnya</li>
+<li>Date, Time, Timestamp untuk kolom yang berisikan data tanggal, waktu atau gabungan tanggal dan waktu, misalnya Tanggal Lahir, Waktu Pendaftaran, dan sejenisnya</li>
+<li>Boolean, untuk kolom yang berisikan data benar (true) atau salah (false), misal Status Menikah, dan sejenisnya</li>
+<li>Dan masih banyak tipe data lainnya</li>
+<li>Untuk detail tipe data tidak akan dibahas di materi ini, karena sudah sangat spesifik ke aplikasi sistem basis yang kita gunakan</li>
+</ul>
+
+        
+        
+    </body>
+    </html>

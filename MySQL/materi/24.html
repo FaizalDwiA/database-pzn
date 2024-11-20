@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Auto Increment</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="../assets/css/markdown.min.css">
+<link rel="stylesheet" href="../assets/css/highlight.min.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="auto-increment">Auto Increment</h1>
+<h2 id="auto-increment-1">Auto Increment</h2>
+<ul>
+<li>Kadang kita butuh angka yang berurut untuk membuat primary key, misal 1, 2, 3, dan seterusnya.</li>
+<li>Untuk melakukan hal ini secara manual bukanlah hal bijak, apalagi jika aplikasi yang kita buat diakses oleh banyak orang secara bersamaan</li>
+<li>MySQL memiliki fitur yang bernama auto increment, fitur ini bisa kita gunakan untuk menandai bahwa suatu primary key datanya diisi secara otomatis dari angka terakhir + 1</li>
+<li>Dengan menggunakan auto increment, kita tidak perlu lalu memasukkan data primary key, ini akan otomatis dibuat oleh MySQL</li>
+</ul>
+<hr>
+<h2 id="membuat-tabel-dengan-auto-increment">Membuat Tabel dengan Auto Increment</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> admin
+(
+    id <span class="hljs-type">INT</span> <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span> AUTO_INCREMENT,
+    first_name <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">100</span>),
+    last_name <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">100</span>),
+    <span class="hljs-keyword">PRIMARY</span> KEY(id)
+) ENGINE <span class="hljs-operator">=</span> InnoDB;
+</code></pre>
+<hr>
+<h2 id="memasukkan-data-tanpa-id">Memasukkan Data Tanpa Id</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> admin(first_name, last_name) <span class="hljs-keyword">VALUES</span>(<span class="hljs-string">&#x27;Faizal&#x27;</span>, <span class="hljs-string">&#x27;Dwi&#x27;</span>);
+<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> admin(first_name, last_name) <span class="hljs-keyword">VALUES</span>(<span class="hljs-string">&#x27;Black&#x27;</span>, <span class="hljs-string">&#x27;Dragon&#x27;</span>);
+<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> admin(first_name, last_name) <span class="hljs-keyword">VALUES</span>(<span class="hljs-string">&#x27;Thunder&#x27;</span>, <span class="hljs-string">&#x27;Syiber&#x27;</span>);
+</code></pre>
+<hr>
+<h2 id="melihat-id-terakhir">Melihat Id Terakhir</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> LAST_INSERT_ID();
+</code></pre>
+<p><strong>Hasil :</strong></p>
+<p><img src="..\assets\img\24\1.PNG" alt="1"></p>
+
+        
+        
+    </body>
+    </html>

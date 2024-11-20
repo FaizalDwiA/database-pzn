@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Numeric Function</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="../assets/css/markdown.min.css">
+<link rel="stylesheet" href="../assets/css/highlight.min.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="numeric-function">Numeric Function</h1>
+<h2 id="numeric-function-1">Numeric Function</h2>
+<ul>
+<li>MySQL memiliki banyak sekali fitur untuk manipulasi data angka</li>
+<li>Hal ini memudahkan kita untuk memanipulasi data angka</li>
+<li>Secara garis besar, fitur ini dibagi menjadi dua, Arithmetic Operator dan Mathematical Function</li>
+</ul>
+<hr>
+<h2 id="arithmetic-operator">Arithmetic Operator</h2>
+<table border="1" width="100%">
+    <tr>
+        <th>Nama</th>
+        <th>Keterangan</th>
+    </tr>
+    <tr>
+        <td>%, MOD</td>
+        <td>Modulo operator</td>
+    </tr>
+    <tr>
+        <td>*</td>
+        <td>Multiplication Operator</td>
+    </tr>
+    <tr>
+        <td>+</td>
+        <td>Addition Operator</td>
+    </tr>
+    <tr>
+        <td>-</td>
+        <td>Minus Operator</td>
+    </tr>
+    <tr>
+        <td>-(minus didepan angka)</td>
+        <td>Change the sign of the argument</td>
+    </tr>
+    <tr>
+        <td>/</td>
+        <td>Division Operator</td>
+    </tr>
+    <tr>
+        <td>DIV</td>
+        <td>Integer Division</td>
+    </tr>
+</table>
+<hr>
+<h2 id="menggunakan-arithmetic-operator">Menggunakan Arithmetic Operator</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-number">10</span> <span class="hljs-operator">+</span> <span class="hljs-number">10</span> <span class="hljs-keyword">AS</span> hasil;
+
+<span class="hljs-keyword">SELECT</span> id, price DIV <span class="hljs-number">1000</span> <span class="hljs-keyword">AS</span> <span class="hljs-string">&#x27;Price in K&#x27;</span>
+<span class="hljs-keyword">FROM</span> products;
+</code></pre>
+<p><strong>Hasil :</strong></p>
+<p><img src="..\assets\img\23\1.PNG" alt="1"></p>
+<p><img src="..\assets\img\23\2.PNG" alt="2"></p>
+<hr>
+<h2 id="mathematical-function">Mathematical Function</h2>
+<ul>
+<li>Selain arithmetic operator, ada juga mathematical function</li>
+<li>Ini adalah kumpulan function yang terdapat di MySQL yang bisa kita gunakan sebagai fungsi-fungsi matematika</li>
+<li>Ada banyak sekali, dan tidak bisa kita bahas semua</li>
+<li><a href="https://dev.mysql.com/doc/refman/8.0/en/mathematical-functions.html">https://dev.mysql.com/doc/refman/8.0/en/mathematical-functions.html</a></li>
+</ul>
+<hr>
+<h2 id="menggunakan-mathematical-function">Menggunakan Mathematical Function</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> PI();
+
+<span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">POWER</span>(<span class="hljs-number">10</span>, <span class="hljs-number">2</span>);
+
+<span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">COS</span>(<span class="hljs-number">10</span>);
+<span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">SIN</span>(<span class="hljs-number">10</span>);
+<span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">TAN</span>(<span class="hljs-number">10</span>);
+</code></pre>
+
+        
+        
+    </body>
+    </html>

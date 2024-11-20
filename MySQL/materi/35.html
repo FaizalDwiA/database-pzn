@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>One to One Relationship</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="../assets/css/markdown.min.css">
+<link rel="stylesheet" href="../assets/css/highlight.min.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="one-to-one-relationship">One to One Relationship</h1>
+<h2 id="jenis-jenis-relasi-tabel">Jenis-Jenis Relasi Tabel</h2>
+<ul>
+<li>Sekarang kita sudah tau untuk melakukan relasi antar tabel, kita bisa menggunakan FOREIGN KEY</li>
+<li>Dan untuk melakukan SELECT beberapa tabel, kita bisa menggunakan JOIN</li>
+<li>Dalam konsep relasi, ada banyak jenis-jenis relasi antar tabel</li>
+<li>Sekarang kita akan bahas dari yang pertama yaitu One to One relationship</li>
+</ul>
+<hr>
+<h2 id="one-to-one-relationship-1">One to One Relationship</h2>
+<ul>
+<li>One to One relationship adalah relasi antar tabel yang paling sederhana</li>
+<li>Artinya tiap data di sebuah tabel hanya boleh berelasi ke maksimal 1 data di tabel lainnya</li>
+<li>Tidak boleh ada relasi lebih dari 1 data</li>
+<li>Contoh misal, kita membuat aplikasi toko online yang terdapat fitur wallet, dan 1 customer, cuma boleh punya 1 wallet</li>
+</ul>
+<hr>
+<h2 id="diagram-one-to-one-relationship">Diagram One to One Relationship</h2>
+<p><img src="..\assets\img\35\1.PNG" alt="1"></p>
+<hr>
+<h2 id="membuat-one-to-one-relationship">Membuat One to One Relationship</h2>
+<ul>
+<li>Cara membuat One to One relationship cukup mudah</li>
+<li>Kita bisa membuat kolom foreign key, lalu set kolom tersebut menggunakan UNIQUE KEY, hal ini dapat mencegah terjadi data di kolom tersebut agar tidak duplikat</li>
+<li>Atau cara lainnya, kita bisa membuat tabel dengan primary key yang sama, sehingga tidak butuh lagi kolom untuk FOREIGN KEY</li>
+</ul>
+<hr>
+<h2 id="membuat-table-wallet">Membuat Table Wallet</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> wallet
+(
+    id <span class="hljs-type">INT</span> <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span> AUTO_INCREMENT,
+    id_customer <span class="hljs-type">INT</span> <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span>,
+    balance <span class="hljs-type">INT</span> <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-number">0</span>,
+    <span class="hljs-keyword">PRIMARY</span> KEY (id),
+    <span class="hljs-keyword">UNIQUE</span> KEY fk_id_customer_unique (id_customer),
+    <span class="hljs-keyword">CONSTRAINT</span> fk_wallet_customer
+    <span class="hljs-keyword">FOREIGN</span> KEY (id_customer) <span class="hljs-keyword">REFERENCES</span> customers (id)
+) ENGINE <span class="hljs-operator">=</span> InnoDB;
+</code></pre>
+
+        
+        
+    </body>
+    </html>

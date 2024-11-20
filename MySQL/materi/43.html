@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>User Management</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="../assets/css/markdown.min.css">
+<link rel="stylesheet" href="../assets/css/highlight.min.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="user-management">User Management</h1>
+<hr>
+<h2 id="root-user">Root User</h2>
+<ul>
+<li>Secara default, mysql membuat root user sebagai super administrator</li>
+<li>Namun best practice nya, saat kita menjalankan MySQL dengan aplikasi yang kita buat, sangat disarankan tidak menggunakan user root</li>
+<li>Lebih baik kita buat user khusus untuk tiap aplikasi, bahkan kita bisa batasi hak akses user tersebut, seperti hanya bisa melakukan SELECT, dan tidak boleh melakukan INSERT, UPDATE atau DELETE</li>
+</ul>
+<hr>
+<h2 id="hak-akses-dan-user">Hak Akses dan User</h2>
+<ul>
+<li>Dalam user management MySQL, kita akan mengenal istilah Hak Akses dari User</li>
+</ul>
+<hr>
+<h2 id="daftar-hak-akses">Daftar Hak Akses</h2>
+<ul>
+<li>Ada banyak sekali hak akses di MySQL</li>
+<li>Kita bisa melihatnya di daftar tabel yang terdapat di halaman berikut :</li>
+<li><a href="https://dev.mysql.com/doc/refman/8.0/en/grant.html">https://dev.mysql.com/doc/refman/8.0/en/grant.html</a></li>
+</ul>
+<hr>
+<h2 id="membuatmenghapus-user">Membuat/Menghapus User</h2>
+<ul>
+<li>localhost / ip address</li>
+<li>% : bisa diakses dilocalhost / ip address</li>
+</ul>
+<pre><code class="language-sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">USER</span> <span class="hljs-string">&#x27;faizal&#x27;</span>@<span class="hljs-string">&#x27;localhost&#x27;</span>;
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">USER</span> <span class="hljs-string">&#x27;dwi&#x27;</span>@<span class="hljs-string">&#x27;%&#x27;</span>;
+
+<span class="hljs-keyword">DROP</span> <span class="hljs-keyword">USER</span> <span class="hljs-string">&#x27;faizal&#x27;</span>@<span class="hljs-string">&#x27;localhost&#x27;</span>;
+<span class="hljs-keyword">DROP</span> <span class="hljs-keyword">USER</span> <span class="hljs-string">&#x27;dwi&#x27;</span>@<span class="hljs-string">&#x27;%&#x27;</span>;
+</code></pre>
+<p><img src="..\assets\img\43\1.PNG" alt="1"></p>
+<hr>
+<h2 id="menambahmenghapus-hak-akses-ke-user">Menambah/Menghapus Hak Akses ke User</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">GRANT</span> <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">ON</span> belajar_mysql.<span class="hljs-operator">*</span> <span class="hljs-keyword">TO</span> <span class="hljs-string">&#x27;faizal&#x27;</span>@<span class="hljs-string">&#x27;localhost&#x27;</span>;
+<span class="hljs-keyword">GRANT</span> <span class="hljs-keyword">SELECT</span>, <span class="hljs-keyword">INSERT</span>, <span class="hljs-keyword">UPDATE</span>, <span class="hljs-keyword">DELETE</span> <span class="hljs-keyword">ON</span> belajar_mysql.<span class="hljs-operator">*</span> <span class="hljs-keyword">TO</span> <span class="hljs-string">&#x27;dwi&#x27;</span>@<span class="hljs-string">&#x27;%&#x27;</span>;
+</code></pre>
+<pre><code class="language-sql"><span class="hljs-keyword">SHOW</span> GRANTS <span class="hljs-keyword">FOR</span> <span class="hljs-string">&#x27;faizal&#x27;</span>@<span class="hljs-string">&#x27;localhost&#x27;</span>;
+<span class="hljs-keyword">SHOW</span> GRANTS <span class="hljs-keyword">FOR</span> <span class="hljs-string">&#x27;dwi&#x27;</span>@<span class="hljs-string">&#x27;%&#x27;</span>;
+</code></pre>
+<p><img src="..\assets\img\43\2.PNG" alt="2"></p>
+<pre><code class="language-sql"><span class="hljs-keyword">REVOKE</span> <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">ON</span> belajar_mysql.<span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> <span class="hljs-string">&#x27;faizal&#x27;</span>@<span class="hljs-string">&#x27;localhost&#x27;</span>;
+<span class="hljs-keyword">REVOKE</span> <span class="hljs-keyword">SELECT</span>, <span class="hljs-keyword">INSERT</span>, <span class="hljs-keyword">UPDATE</span>, <span class="hljs-keyword">DELETE</span> <span class="hljs-keyword">ON</span> belajar_mysql.<span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> <span class="hljs-string">&#x27;dwi&#x27;</span>@<span class="hljs-string">&#x27;%&#x27;</span>;
+</code></pre>
+<hr>
+<h2 id="mengubah-password-untuk-user">Mengubah Password untuk User</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">SET</span> PASSWORD <span class="hljs-keyword">FOR</span> <span class="hljs-string">&#x27;faizal&#x27;</span>@<span class="hljs-string">&#x27;localhost&#x27;</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;Rahasia123&#x27;</span>;
+<span class="hljs-keyword">SET</span> PASSWORD <span class="hljs-keyword">FOR</span> <span class="hljs-string">&#x27;dwi&#x27;</span>@<span class="hljs-string">&#x27;%&#x27;</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;rahasia&#x27;</span>;
+</code></pre>
+<h3 id="bisa">bisa</h3>
+<pre><code class="language-sql"><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">USER</span> <span class="hljs-string">&#x27;faizal&#x27;</span>@<span class="hljs-string">&#x27;localhost&#x27;</span> IDENTIFIED <span class="hljs-keyword">BY</span> <span class="hljs-string">&#x27;Rahasia123&#x27;</span>;
+<span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">USER</span> <span class="hljs-string">&#x27;dwi&#x27;</span>@<span class="hljs-string">&#x27;%&#x27;</span> IDENTIFIED <span class="hljs-keyword">BY</span> <span class="hljs-string">&#x27;rahasia&#x27;</span>;
+</code></pre>
+<p><img src="..\assets\img\43\3.PNG" alt="3"></p>
+
+        
+        
+    </body>
+    </html>

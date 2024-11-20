@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Insert Data</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="../assets/css/markdown.min.css">
+<link rel="stylesheet" href="../assets/css/highlight.min.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="insert-data">Insert Data</h1>
+<h2 id="insert-data-1">Insert Data</h2>
+<ul>
+<li>Sebelum kita meng memasukkan data kedalam tabel, tabel harus dibuat terlebih dahulu</li>
+<li>Kita bisa menyebutkan kolom mana yang ingin kita isi, jika kita tidak menyebutkan kolom nya, artinya kolom tersebut tidak akan kita isi, dan secara otomatis kolom yang tidak kita isi, nilainya akan NULL, kecuali memiliki DEFAULT VALUE</li>
+<li>Untuk memasukkan data kedalam tabel, kita bisa menggunakan perintah SQL yang bernama INSERT</li>
+</ul>
+<h2 id="membuat-tabel-produk">Membuat Tabel Produk</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> products
+(
+    id <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">10</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span> ,
+    name <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">100</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span> ,
+    description TEXT,
+    price <span class="hljs-type">INT</span> UNSIGNED <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span>,
+    quantity <span class="hljs-type">INT</span> UNSIGNED <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-number">0</span>,
+    created_at <span class="hljs-type">TIMESTAMP</span> <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-built_in">CURRENT_TIMESTAMP</span>
+) ENGINE <span class="hljs-operator">=</span> InnoDB;
+</code></pre>
+<hr>
+<h2 id="memasukkan-data">Memasukkan Data</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> products(id, name, price, quantity)
+<span class="hljs-keyword">VALUES</span>(<span class="hljs-string">&#x27;P0001&#x27;</span>, <span class="hljs-string">&#x27;Mie Ayam Original&#x27;</span>, <span class="hljs-number">15000</span>, <span class="hljs-number">100</span>);
+
+<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> products(id, name, description, price, quantity)
+<span class="hljs-keyword">VALUES</span>(<span class="hljs-string">&#x27;P0002&#x27;</span>, <span class="hljs-string">&#x27;Mie Ayam Bakso Tahu&#x27;</span>, <span class="hljs-string">&#x27;Mie Ayam Original + Bakso Tahu&#x27;</span>, <span class="hljs-number">20000</span>, <span class="hljs-number">100</span>);
+</code></pre>
+<hr>
+<h2 id="memasukkan-beberapa-data-sekaligus">Memasukkan Beberapa Data Sekaligus</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> products(id, name, price, quantity)
+<span class="hljs-keyword">VALUES</span> (<span class="hljs-string">&#x27;P0003&#x27;</span>, <span class="hljs-string">&#x27;Mie Ayam Ceker&#x27;</span>, <span class="hljs-number">20000</span>, <span class="hljs-number">100</span>),
+        (<span class="hljs-string">&#x27;P0004&#x27;</span>, <span class="hljs-string">&#x27;Mie Ayam Spesial&#x27;</span>, <span class="hljs-number">25000</span>, <span class="hljs-number">100</span>),
+        (<span class="hljs-string">&#x27;P0005&#x27;</span>, <span class="hljs-string">&#x27;Mie Ayam Yamin&#x27;</span>, <span class="hljs-number">15000</span>, <span class="hljs-number">100</span>);
+</code></pre>
+
+        
+        
+    </body>
+    </html>

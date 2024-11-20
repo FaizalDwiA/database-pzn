@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Model Data Lainnya</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="../assets/css/markdown.min.css">
+<link rel="stylesheet" href="../assets/css/highlight.min.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="model-data-lainnya">Model Data Lainnya</h1>
+<h2 id="model-data-lainnya-1">Model Data Lainnya</h2>
+<ul>
+<li>Sebenarnya sampai materi Model Data Relational, kita sudah mulai bisa membuat basis data yang baik</li>
+<li>Namun, pada kasus-kasus tertentu, kadang ada jenis model data lainnya</li>
+<li>Di materi ini, kita akan coba bahas beberapa model data lainnya, seperti :</li>
+<li>Weak Entity (entitas lemah)</li>
+<li>Sub Entity (entitas turunan)</li>
+<li>Unary Relationship (relasi tunggal)</li>
+<li>Multi Entity Relationship (relasi multi entitas)</li>
+<li>Redundant Relationship (relasi ganda)</li>
+</ul>
+<hr>
+<h2 id="weak-entity">Weak Entity</h2>
+<ul>
+<li>Entitas lemah sebenarnya adalah entitas biasa, namun sifatnya lemah, artinya dia tidak bisa berdisi sendiri.</li>
+<li>Weak entity biasanya berelasi dengan entity utama</li>
+<li>Contoh pada kasus sebelumnya Dompet bisa dibilang weak entity, karena tidak bisa berdirisi sendiri tanpa adanya Pembeli</li>
+<li>Atau, kita bisa pisahkan alamat menjadi entitas lemah, yang hanya bisa ada jika terdapat entitas Pembeli</li>
+</ul>
+<hr>
+<h2 id="diagram--weak-entity">Diagram : Weak Entity</h2>
+<p><img src="..\assets\img\9\1.PNG" alt="1"></p>
+<hr>
+<h2 id="sub-entity">Sub Entity</h2>
+<ul>
+<li>Saat membuat entity, bisa terjadi adanya beberapa entity yang lebih detail, yang memiliki kesamaan atribut, namun terdapat juga perbedaan nya</li>
+<li>Contoh, pada kasus Entity Barang, kemungkinan akan ada banyak jenis barang, dan tiap jenis barang bisa berbeda atribut yang dimilikinya</li>
+<li>Misal saja kita tambahkan Entity Barang Laptop dan Barang Pakaian, kedua entity tersebut memiliki kesamaan, namun memiliki perbedaan juga</li>
+<li>Untuk menggambarkan Sub Entity, kita akan menggunakan diagram ISA</li>
+</ul>
+<hr>
+<h2 id="diagram--sub-entity">Diagram : Sub Entity</h2>
+<p><img src="..\assets\img\9\2.PNG" alt="2"></p>
+<hr>
+<h2 id="unary-relationship">Unary Relationship</h2>
+<ul>
+<li>Unary Relationship adalah relasi yang terjadi pada entitas dengan entitas dirinya sendiri</li>
+<li>Hal ini sering sekali terjadi</li>
+<li>Misal, pada kasus Toko Online, misal kita akan menambah fitur Referal (Member get Member), dan kita akan membolehkan Pembeli merekomendasikan Pembeli lain untuk mendapat bonus berupa saldo tertentu misalnya</li>
+<li>Pada kasus ini, berarti kita harus membuat Unary Relationship dari Pembeli ke Pembeli lagi</li>
+</ul>
+<hr>
+<h2 id="diagram--unary-relationship">Diagram : Unary Relationship</h2>
+<p><img src="..\assets\img\9\3.PNG" alt="3"></p>
+<hr>
+<h2 id="multi-entity-relationship">Multi Entity Relationship</h2>
+<ul>
+<li>Relasi multi entitas merupakan relasi yang terjadi terhadap lebih dari dua entitas</li>
+<li>Pada kasus sebelumnya contohnya Pembeli memiliki relasi membeli dengan Barang</li>
+<li>Misal kita akan tambahkan Bank dengan relasi Pembeli membeli Barang, menggunakan Bank</li>
+</ul>
+<hr>
+<h2 id="diagram--multi-entity-relationship">Diagram : Multi Entity Relationship</h2>
+<p><img src="..\assets\img\9\4.PNG" alt="4"></p>
+<hr>
+<h2 id="redundant-relationship">Redundant Relationship</h2>
+<ul>
+<li>Relasi antar entitas boleh lebih dari satu, jika ada dua entitas memiliki relasi lebih dari satu antar entitas tersebut, artinya itu adalah relasi ganda</li>
+<li>Banyak kasus seperti ini, contohnya pada kasus relasi Pembeli dan Barang, misal kita tambahkan relasi Pembeli menyukai Barang</li>
+<li>Artinya tidak hanya Membeli, tapi juga Menyukai</li>
+</ul>
+<hr>
+<h2 id="diagram--redundant-relationship">Diagram : Redundant Relationship</h2>
+<p><img src="..\assets\img\9\5.PNG" alt="5"></p>
+
+        
+        
+    </body>
+    </html>

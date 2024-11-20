@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Grouping</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="../assets/css/markdown.min.css">
+<link rel="stylesheet" href="../assets/css/highlight.min.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="grouping">Grouping</h1>
+<h2 id="group-by">GROUP BY</h2>
+<ul>
+<li>Kadang saat melakukan aggregate, kita ingin datanya di grouping berdasarkan kriteria tertentu</li>
+<li>Misal kita ingin melihat rata-rata harga product, tapi ingin per category</li>
+<li>Atau kita ingin melihat total semua product, tapi per category</li>
+<li>Hal ini bisa dilakukan di MySQL dengan menggunakan GROUP BY clause</li>
+<li>GROUP BY clause ini hanya bisa digunakan jika kita menggunakan aggregate function</li>
+<li><a href="https://dev.mysql.com/doc/refman/8.0/en/group-by-modifiers.html">https://dev.mysql.com/doc/refman/8.0/en/group-by-modifiers.html</a></li>
+</ul>
+<hr>
+<h2 id="menggunakan-group-by">Menggunakan GROUP BY</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> category, <span class="hljs-built_in">COUNT</span>(id) <span class="hljs-keyword">AS</span> <span class="hljs-string">&#x27;Total Products&#x27;</span>
+<span class="hljs-keyword">FROM</span> products
+<span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> category;
+</code></pre>
+<p><strong>Hasil :</strong></p>
+<p><img src="..\assets\img\29\1.PNG" alt="1"></p>
+<hr>
+<h2 id="having-clause">HAVING Clause</h2>
+<ul>
+<li>Kadang kita ingin melakukan filter terhadap data yang sudah kita grouping</li>
+<li>Misal kita ingin menampilkan rata-rata harga per kategori, tapi yang harganya diatas 10.000 misalnya</li>
+<li>Jika menggunakan WHERE di SELECT, hal ini tidak bisa dilakukan</li>
+<li>Untuk memfilter hasil aggregate function, kita harus menggunakan HAVING clause</li>
+</ul>
+<hr>
+<h2 id="menggunakan-having-clause">Menggunakan HAVING Clause</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> category, <span class="hljs-built_in">COUNT</span>(id) <span class="hljs-keyword">AS</span> total
+<span class="hljs-keyword">FROM</span> products
+<span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> category
+<span class="hljs-keyword">HAVING</span> total <span class="hljs-operator">&gt;</span> <span class="hljs-number">2</span>;
+</code></pre>
+<p><strong>Hasil :</strong></p>
+<p><img src="..\assets\img\29\2.PNG" alt="2"></p>
+
+        
+        
+    </body>
+    </html>

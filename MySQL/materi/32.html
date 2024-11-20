@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Full-Text Search</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="../assets/css/markdown.min.css">
+<link rel="stylesheet" href="../assets/css/highlight.min.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="full-text-search">Full-Text Search</h1>
+<h2 id="masalah-dengan-like-operator">Masalah dengan LIKE operator</h2>
+<ul>
+<li>Kadang kita ingin mencari sebuah kata dalam tabel, dan biasanya kita akan menggunakan LIKE operator</li>
+<li>Operasi yang dilakukan LIKE operator adalah dengan cara mencari seluruh data di tabel dari baris pertama sampai terakhir, hal ini membuat operasi LIKE sangat lambat</li>
+<li>Menambah index di tabel juga tidak akan membantu, karen LIKE operator tidak menggunakan index</li>
+<li>MySQL menyediakan fitur Full Text Search jika ada kasus kita ingin melakukan hal ini</li>
+</ul>
+<hr>
+<h2 id="full-text-search-1">Full-Text Search</h2>
+<ul>
+<li>Full-Text Search memungkinkan kita bisa mencari sebagian kata di kolom dengan tipe data String</li>
+<li>Ini sangat cocok ketika pada kasus kita memang membutuhkan pencarian yang tidak hanya sekedar operasi = (equals, sama dengan)</li>
+<li><a href="https://dev.mysql.com/doc/refman/8.0/en/fulltext-search.html">https://dev.mysql.com/doc/refman/8.0/en/fulltext-search.html</a></li>
+</ul>
+<hr>
+<h2 id="membuat-table-dengan-full-text-search">Membuat Table dengan Full-Text Search</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> products
+(
+    id <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">10</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span>,
+    name <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">100</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span>,
+    description TEXT,
+    price <span class="hljs-type">INT</span> UNSIGNED <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span>,
+    quantity <span class="hljs-type">INT</span> UNSIGNED <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-number">0</span>,
+    created_at <span class="hljs-type">TIMESTAMP</span> <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-built_in">CURRENT_TIMESTAMP</span>,
+    <span class="hljs-keyword">PRIMARY</span> KEY (id),
+    FULLTEXT product_search (name, description)
+) ENGINE <span class="hljs-operator">=</span> InnoDB;
+</code></pre>
+<hr>
+<h2 id="menambahmenghapus-full-text-search">Menambah/Menghapus Full-Text Search</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> products
+    <span class="hljs-keyword">ADD</span> FULLTEXT product_search (name, description);
+
+<span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> products
+    <span class="hljs-keyword">DROP</span> INDEX product_search;
+</code></pre>
+<hr>
+<h2 id="mode-full-text-search">Mode Full-Text Search</h2>
+<p>MySQL menyediakan beberapa mode untuk melakukan pencarian di Full-Text Search, kita bisa<br>
+memilihnya sesuai kebutuhan kita</p>
+<ul>
+<li>Natural Language, yaitu mencari seperti bahasa natural (per kata) :<br>
+<a href="https://dev.mysql.com/doc/refman/8.0/en/fulltext-natural-language.html">https://dev.mysql.com/doc/refman/8.0/en/fulltext-natural-language.html</a></li>
+<li>Boolean, yaitu mencari dengan kemampuan mengandung kata (+) atau tidak mengandung kata (-) dan lain-lain :<br>
+<a href="https://dev.mysql.com/doc/refman/8.0/en/fulltext-boolean.html">https://dev.mysql.com/doc/refman/8.0/en/fulltext-boolean.html</a></li>
+<li>Query Expansion, yaitu mencari seperti natural language, namun melakukan dua kali pencarian, pencarian pertama menggunakan natural language, pencarian kedua melakukan pencarian dari kedekatan hasil pertama, misal kita mencari kata “bakso”, lalu ternyata di dalam “bakso” ada kata “mie”, maka kemungkinan query kedua akan mencari kata “mie” juga :<br>
+<a href="https://dev.mysql.com/doc/refman/8.0/en/fulltext-query-expansion.html">https://dev.mysql.com/doc/refman/8.0/en/fulltext-query-expansion.html</a></li>
+</ul>
+<hr>
+<h2 id="mencari-dengan-natural-language-mode">Mencari dengan Natural Language Mode</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span>
+<span class="hljs-keyword">FROM</span> products
+<span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">MATCH</span>(name, description)
+    AGAINST(<span class="hljs-string">&#x27;bakar&#x27;</span> <span class="hljs-keyword">IN</span> <span class="hljs-keyword">NATURAL</span> <span class="hljs-keyword">LANGUAGE</span> MODE);
+</code></pre>
+<p><strong>Hasil :</strong></p>
+<p><img src="..\assets\img\32\1.PNG" alt="1"></p>
+<hr>
+<h2 id="mencari-dengan-boolean-mode">Mencari dengan Boolean Mode</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> 
+<span class="hljs-keyword">FROM</span> products
+<span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">MATCH</span>(name, description)
+    AGAINST(<span class="hljs-string">&#x27;+bakar -ayam&#x27;</span> <span class="hljs-keyword">IN</span> <span class="hljs-type">BOOLEAN</span> MODE);
+</code></pre>
+<p><strong>Hasil :</strong></p>
+<p><img src="..\assets\img\32\2.PNG" alt="2"></p>
+<hr>
+<h2 id="mencari-dengan-query-expansion-mode">Mencari dengan Query Expansion Mode</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span>
+<span class="hljs-keyword">FROM</span> products
+<span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">MATCH</span>(name, description)
+    AGAINST(<span class="hljs-string">&#x27;bakar&#x27;</span> <span class="hljs-keyword">WITH</span> QUERY EXPANSION);
+</code></pre>
+<p><strong>Hasil :</strong></p>
+<p><img src="..\assets\img\32\3.PNG" alt="3"></p>
+
+        
+        
+    </body>
+    </html>

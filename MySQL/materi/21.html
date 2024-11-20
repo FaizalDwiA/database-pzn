@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Limit Clause</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="../assets/css/markdown.min.css">
+<link rel="stylesheet" href="../assets/css/highlight.min.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="limit-clause">Limit Clause</h1>
+<h2 id="limit-clause-1">Limit Clause</h2>
+<ul>
+<li>Mengambil seluruh data di tabel bukanlah pilihan bijak, apalagi jika datanya sudah banyak sekali</li>
+<li>Kita bisa membatasi jumlah data yang diambil dalam SQL SELECT dengan LIMIT clause</li>
+<li>Selain membatasi jumlah data, kita juga bisa meng-skip sejumlah data yang tidak ingin kita lihat</li>
+<li>LIMIT biasanya digunakan saat melakukan paging di aplikasi kita</li>
+</ul>
+<hr>
+<h2 id="membatasi-hasil-query">Membatasi Hasil Query</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span>
+<span class="hljs-keyword">FROM</span> products
+<span class="hljs-keyword">WHERE</span> price <span class="hljs-operator">&gt;</span> <span class="hljs-number">0</span>
+<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> price
+LIMIT <span class="hljs-number">2</span>;
+</code></pre>
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD<br>
+<strong>Hasil :</strong></p>
+<p><img src="..\assets\img\21\1.PNG" alt="1"></p>
+<p>=======</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>ff260bcfa7bfe76000535b6d9093310382979768</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+<hr>
+<h2 id="skip-hasil-query">Skip Hasil Query</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span>
+<span class="hljs-keyword">FROM</span> products
+<span class="hljs-keyword">WHERE</span> price <span class="hljs-operator">&gt;</span> <span class="hljs-number">0</span>
+<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> price
+LIMIT <span class="hljs-number">2</span>, <span class="hljs-number">2</span>;
+<span class="hljs-operator">&lt;&lt;</span><span class="hljs-operator">&lt;&lt;</span><span class="hljs-operator">&lt;&lt;</span><span class="hljs-operator">&lt;</span> HEAD
+</code></pre>
+<p><strong>Hasil :</strong></p>
+<h1 id=""><img src="..\assets\img\21\2.PNG" alt="2"></h1>
+<pre><code>&gt;&gt;&gt;&gt;&gt;&gt;&gt; ff260bcfa7bfe76000535b6d9093310382979768
+</code></pre>
+
+        
+        
+    </body>
+    </html>

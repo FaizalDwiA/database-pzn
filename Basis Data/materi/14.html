@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Attribute Key</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="../assets/css/markdown.min.css">
+<link rel="stylesheet" href="../assets/css/highlight.min.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="attribute-key">Attribute Key</h1>
+<h2 id="attribute-key-1">Attribute Key</h2>
+<ul>
+<li>Attribute Key adalah nilai yang bisa digunakan sebagai identitas baris pada tabel yang sifatnya unik</li>
+<li>Terdapat 3 jenis attribute key, yaitu :</li>
+<li>Superkey</li>
+<li>Candidate key, dan</li>
+<li>Primary key</li>
+</ul>
+<hr>
+<h2 id="attribute-key---superkey">Attribute Key - Superkey</h2>
+<ul>
+<li>Superkey merupakan satu atau atau lebih atribut yang dapat membedakan setiap baris data secara unik</li>
+<li>Misal pada tabel produk, yang bisa menjadi superkey adalah</li>
+<li>(kode produk, nama produk, berat produk, harga produk, kode penjual)</li>
+<li>(nama produk, kode penjual) jika bisa menjamin penjual tidak menjual barang yang sama</li>
+<li>(kode produk, kode penjual)</li>
+<li>(kode produk)</li>
+</ul>
+<hr>
+<h2 id="candidate-key">Candidate key</h2>
+<ul>
+<li>Candidate key merupakan kumpulan atribut minimal yang dapat membedakan setiap baris data dalam sebuah tabel secara unik.</li>
+<li>Contoh candidate key pada tabel produk adalah :</li>
+<li>(kode produk)</li>
+<li>(nama produk) jika bisa dijamin nama produk tidak boleh dibuat lebih dari sekali</li>
+</ul>
+<hr>
+<h2 id="primary-key">Primary Key</h2>
+<ul>
+<li>Setelah menentukan candidate key, salah satu kombinasi candidate key akan ditentukan sebagai primary key, key utama sebagai representasi baris secara unik</li>
+<li>Primary key biasanya dipilih pada candidate key yang paling cocok dan paling bisa dijamin keunikannya, contohnya pada kasus tabel produk :</li>
+<li>(kode produk)</li>
+</ul>
+
+        
+        
+    </body>
+    </html>

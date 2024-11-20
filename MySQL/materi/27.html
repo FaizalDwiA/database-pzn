@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Flow Control Function</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="../assets/css/markdown.min.css">
+<link rel="stylesheet" href="../assets/css/highlight.min.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="flow-control-function">Flow Control Function</h1>
+<h2 id="flow-control-function-1">Flow Control Function</h2>
+<ul>
+<li>MySQL memiliki fitur flow control function</li>
+<li>Ini mirip IF ELSE di bahasa pemrograman</li>
+<li>Tapi ingat, fitur ini tidak se kompleks yang dimiliki bahasa pemrograman</li>
+<li><a href="https://dev.mysql.com/doc/refman/8.0/en/flow-control-functions.html">https://dev.mysql.com/doc/refman/8.0/en/flow-control-functions.html</a></li>
+</ul>
+<hr>
+<h2 id="menggunakan-control-flow-case">Menggunakan Control Flow CASE</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> id,
+    <span class="hljs-keyword">CASE</span> category
+        <span class="hljs-keyword">WHEN</span> <span class="hljs-string">&#x27;Makanan&#x27;</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">&#x27;Enak&#x27;</span>
+        <span class="hljs-keyword">WHEN</span> <span class="hljs-string">&#x27;Minuman&#x27;</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">&#x27;Segar&#x27;</span>
+        <span class="hljs-keyword">ELSE</span> <span class="hljs-string">&#x27;Apa itu?&#x27;</span>
+        <span class="hljs-keyword">END</span> <span class="hljs-keyword">AS</span> <span class="hljs-string">&#x27;Category&#x27;</span>
+<span class="hljs-keyword">FROM</span> products;
+</code></pre>
+<p><strong>Hasil :</strong></p>
+<p><img src="..\assets\img\27\1.PNG" alt="1"></p>
+<hr>
+<h2 id="menggunakan-control-flow-if">Menggunakan Control Flow IF</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> id, price,
+    IF(price <span class="hljs-operator">&lt;=</span> <span class="hljs-number">15000</span>, <span class="hljs-string">&#x27;Murah&#x27;</span>,
+        IF(price <span class="hljs-operator">&lt;=</span> <span class="hljs-number">20000</span>, <span class="hljs-string">&#x27;Mahal&#x27;</span>, <span class="hljs-string">&#x27;Mahal Sekali&#x27;</span>)
+    ) <span class="hljs-keyword">AS</span> <span class="hljs-string">&#x27;Mahal?&#x27;</span>
+<span class="hljs-keyword">FROM</span> products;
+</code></pre>
+<p><strong>Hasil :</strong></p>
+<p><img src="..\assets\img\27\2.PNG" alt="2"></p>
+<hr>
+<h2 id="menggunakan-control-flow-ifnull">Menggunakan Control Flow IFNULL</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> id, name, IFNULL(description, <span class="hljs-string">&#x27;Kosong&#x27;</span>)
+<span class="hljs-keyword">FROM</span> products;
+</code></pre>
+<p><strong>Hasil :</strong></p>
+<p><img src="..\assets\img\27\3.PNG" alt="3"></p>
+
+        
+        
+    </body>
+    </html>

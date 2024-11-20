@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Select Distinct Data</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="../assets/css/markdown.min.css">
+<link rel="stylesheet" href="../assets/css/highlight.min.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="select-distinct-data">Select Distinct Data</h1>
+<h2 id="select-distinct-data-1">Select Distinct Data</h2>
+<ul>
+<li>Saat melakukan query dengan SELECT, kadang kita mendapatkan data yang duplikat</li>
+<li>Misal kita ingin melihat semua kategori di tabel products, maka otomatis hasil query SELECT akan duplikat, karena banyak sekali produk dengan kategori yang sama</li>
+<li>Jika kita ingin menghilangkan data-data duplikat tersebut , kita bisa menggunakan SELECT dengan tambahan DISTINCT sebelum nama kolom nya</li>
+</ul>
+<hr>
+<h2 id="menghilangkan-data-duplikat">Menghilangkan Data Duplikat</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">distinct</span> category
+<span class="hljs-keyword">FROM</span> products;
+<span class="hljs-operator">&lt;&lt;</span><span class="hljs-operator">&lt;&lt;</span><span class="hljs-operator">&lt;&lt;</span><span class="hljs-operator">&lt;</span> HEAD
+</code></pre>
+<p><strong>Hasil :</strong></p>
+<h1 id=""><img src="..\assets\img\22\1.PNG" alt="1"></h1>
+<pre><code>&gt;&gt;&gt;&gt;&gt;&gt;&gt; ff260bcfa7bfe76000535b6d9093310382979768
+</code></pre>
+
+        
+        
+    </body>
+    </html>

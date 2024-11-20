@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Model Data Relational</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="../assets/css/markdown.min.css">
+<link rel="stylesheet" href="../assets/css/highlight.min.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="model-data-relational">Model Data Relational</h1>
+<h2 id="relationship">Relationship</h2>
+<ul>
+<li>Seperti yang di materi sebelumnya dibahas, bahwa dalam Model ER, selain Entity dan Attribute, terdapat juga komponen Relationship</li>
+<li>Relationship menunjukkan hubungan antar Entity dengan Entity yang lain</li>
+<li>Misal hubungan antara Entity Penjual dengan Entity Barang. Relationship diantara keduanya mengandung arti bahwa penjual sedang berjualan/menjual barang Kardinalitas / Derajat Relasi</li>
+<li>Kardinalitas relasi menunjukkan tentang jumlah Entity yang dapat berelasi dengan Entity lainnya</li>
+<li>Contoh misal pada kasus Toko Online, Entity Penjual bisa berelasi dengan satu Entity Barang, atau lebih, atau bahkan tidak ada</li>
+</ul>
+<hr>
+<h2 id="one-to-one-satu-ke-satu">One to One (Satu ke Satu)</h2>
+<ul>
+<li>One to One artinya hubungan antara Entity A misalnya, hanya bisa berhubungan dengan Entity B dengan maksimal hanya satu Entity saja</li>
+<li>Begitu pula sebaliknya, Entity B hanya bisa berelasi dengan satu Entity A</li>
+</ul>
+<hr>
+<h2 id="diagram--one-to-one">Diagram : One to One</h2>
+<p><img src="..\assets\img\6\1.PNG" alt="1"></p>
+<hr>
+<h2 id="one-to-many-satu-ke-banyak">One to Many (Satu ke Banyak)</h2>
+<ul>
+<li>One to Many artinya hubungan antara Entity A misalnya, bisa berhubungan dengan banyak Entity B</li>
+<li>Tetapi tidak sebaliknya, Entity B hanya bisa berelasi dengan satu Entity A</li>
+</ul>
+<hr>
+<h2 id="diagram--one-to-many">Diagram : One to Many</h2>
+<p><img src="..\assets\img\6\2.PNG" alt="2"></p>
+<hr>
+<h2 id="many-to-one-banyak-ke-satu">Many to One (Banyak ke Satu)</h2>
+<ul>
+<li>Many to One artinya hubungan antara Entity A misalnya, hanya bisa berhubungan dengan satu Entity B</li>
+<li>Tetapi tidak sebaliknya, Entity B bisa berelasi ke banyak Entity A</li>
+</ul>
+<hr>
+<h2 id="diagram--many-to-one">Diagram : Many to One</h2>
+<p><img src="..\assets\img\6\3.PNG" alt="3"></p>
+<hr>
+<h2 id="many-to-many-banyak-ke-banyak">Many to Many (Banyak ke Banyak)</h2>
+<ul>
+<li>Many to Many artinya hubungan antara Entity A misalnya, bisa berhubungan dengan banyak Entity B</li>
+<li>Begitu juga sebaliknya, Entity B bisa berelasi ke banyak Entity A juga</li>
+</ul>
+<hr>
+<h2 id="diagram--many-to-many">Diagram : Many to Many</h2>
+<p><img src="..\assets\img\6\4.PNG" alt="4"></p>
+
+        
+        
+    </body>
+    </html>

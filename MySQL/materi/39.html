@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Subqueries</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="../assets/css/markdown.min.css">
+<link rel="stylesheet" href="../assets/css/highlight.min.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="subqueries">Subqueries</h1>
+<hr>
+<h2 id="subquery-di-where">Subquery di WHERE</h2>
+<ul>
+<li>MySQL mendukung pencarian data menggunakan WHERE dari hasil SELECT query</li>
+<li>Fitur ini dinamakan Subquery</li>
+<li>Contoh, kita ingin mencari products yang harganya diatas harga rata-rata, artinya kita akan melakukan SELECT dengan WHERE price &gt; harga rata, dimana harga rata-rata perlu kita hitung menggunakan query SELECT lainnya menggunakan aggregate function AVG</li>
+</ul>
+<hr>
+<h2 id="melakukan-subquery-di-where-clause">Melakukan Subquery di WHERE Clause</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span>
+<span class="hljs-keyword">FROM</span> products
+<span class="hljs-keyword">WHERE</span> price <span class="hljs-operator">&gt;</span> (<span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">AVG</span>(price) <span class="hljs-keyword">FROM</span> products);
+</code></pre>
+<p><strong>Hasil :</strong></p>
+<p><img src="..\assets\img\39\1.PNG" alt="1"></p>
+<hr>
+<h2 id="subquery-di-from">Subquery di FROM</h2>
+<ul>
+<li>Selain di WHERE clause, Subquery juga bisa dilakukan di FROM clause</li>
+<li>Misal kita ingin mencari data dari hasil query SELECT, itu bisa kita lakukan di MySQL</li>
+</ul>
+<hr>
+<h2 id="melakukan-subquery-di-from-clause">Melakukan Subquery di FROM Clause</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">MAX</span>(price)
+<span class="hljs-keyword">FROM</span> (
+    <span class="hljs-keyword">SELECT</span> price
+    <span class="hljs-keyword">FROM</span> categories
+    <span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> products
+    <span class="hljs-keyword">ON</span> (products.id_category <span class="hljs-operator">=</span> categories.id)
+) <span class="hljs-keyword">AS</span> cp;
+</code></pre>
+<p><strong>Hasil :</strong></p>
+<p><img src="..\assets\img\39\2.PNG" alt="2"></p>
+
+        
+        
+    </body>
+    </html>

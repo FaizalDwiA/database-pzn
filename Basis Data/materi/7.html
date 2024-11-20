@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Tahapan Membuat ERD Lanjutan</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="../assets/css/markdown.min.css">
+<link rel="stylesheet" href="../assets/css/highlight.min.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="tahapan-membuat-erd-lanjutan">Tahapan Membuat ERD Lanjutan</h1>
+<h2 id="contoh-kasus--toko-online-lanjutan">Contoh Kasus : Toko Online (Lanjutan)</h2>
+<ul>
+<li>Misal kita akan membuat Toko Online (ruang lingkup)</li>
+<li>Pada materi sebelumnya kita sudah membuat Entity dan Attribute, selanjutnya kita akan buat Relationship nya</li>
+</ul>
+<hr>
+<h2 id="menentukan-relationship">Menentukan Relationship</h2>
+<ul>
+<li>Setelah kita selesai membuat Entity dan Attribute, selanjutnya kita perlu tentukan Relationship antar Entity</li>
+<li>Sama seperti sebelumnya, menentukan Relationship nya juga harus sesuai ruang lingkup yang sedang kita buat</li>
+<li>Pada kasus ruang lingkup Toko Online, misal kita akan buat Relationship dari Pembeli ke Barang dengan relasi Membeli</li>
+<li>Dan Relationship dari Penjual ke Barang dengan relasi Menjual</li>
+</ul>
+<hr>
+<h2 id="diagram--relationship">Diagram : Relationship</h2>
+<p><img src="..\assets\img\7\1.PNG" alt="1"></p>
+<hr>
+<h2 id="menentukan-attribute-foreign-key">Menentukan Attribute Foreign Key</h2>
+<ul>
+<li>Saat kita membuat Entity, kita akan menentukan Attribute Key atau dibilang Primary Key, yaitu atribut kunci yang merepresentasikan Entity tersebut</li>
+<li>Dalam Relationship, kita juga bisa menambahkan atribut, dan biasanya kita juga perlu menentukan Attribute Foreign Key, yaitu Attribute Key di Entity yang menjadi digunakan sebagai data untuk lookup (melihat) ke Entity pemilik relasi tersebut</li>
+<li>Pada kasus Membeli misal kita perlu tahu siapa yang membeli (Email Pembeli) dan barang apa yang dibeli (SKU Barang)</li>
+<li>Pada kasus Menjual, kita perlu tahu siapa yang menjual (Email Penjual) dan barang apa yang dijual (SKU Barang)</li>
+</ul>
+<hr>
+<h2 id="diagram--attribute-foreign-key">Diagram : Attribute Foreign Key</h2>
+<p><img src="..\assets\img\7\2.PNG" alt="2"></p>
+<hr>
+<h2 id="menentukan-derajat-relasi">Menentukan Derajat Relasi</h2>
+<ul>
+<li>Selanjutnya, kita perlu tentukan derajat relasi untuk Relationship yang kita buat</li>
+<li>Pada kasus Membeli, kita bisa tentukan sebagai relasi Many to Many, karena satu Pembeli bisa membeli banyak Barang, dan satu Barang bisa dibeli banyak Pembeli</li>
+<li>Pada kasus Menjual, kita bisa tentukan sebagai relasi One to Many atau Many to One, karena misal satu Barang hanya bisa dijual oleh satu Penjual, namun satu Penjual bisa menjual lebih dari satu Barang</li>
+</ul>
+<hr>
+<h2 id="diagram--derajat-relasi">Diagram : Derajat Relasi</h2>
+<p><img src="..\assets\img\7\3.PNG" alt="3"></p>
+<hr>
+<h2 id="melengkapi-attribute-tambahan">Melengkapi Attribute Tambahan</h2>
+<ul>
+<li>Bukan hanya Entity yang bisa memiliki Attribute</li>
+<li>Relationship pun bisa memiliki Attribute jika memang perlu</li>
+<li>Sebelumnya kita sudah menambah Attribute yang bersifat Foreign Key, sekarang kita bisa tambahkan Attribute yang sifatnya deskriptif</li>
+<li>Misal pada relasi Membeli, kita akan tambahkan atribut Jumlah</li>
+<li>Dan pada relasi Menjual, kita tidak akan menambah atribut deskriptif lainnya</li>
+</ul>
+<hr>
+<h2 id="diagram--attribute">Diagram : Attribute</h2>
+<p><img src="..\assets\img\7\4.PNG" alt="4"></p>
+
+        
+        
+    </body>
+    </html>

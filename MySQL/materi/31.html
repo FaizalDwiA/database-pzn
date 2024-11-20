@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Index</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="../assets/css/markdown.min.css">
+<link rel="stylesheet" href="../assets/css/highlight.min.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="index">Index</h1>
+<h2 id="index-1">Index</h2>
+<ul>
+<li>Secara default, MySQL akan menyimpan data di dalam disk seperti tabel biasanya</li>
+<li>Hal ini menyebabkan, ketika kita mencari data, maka MySQL akan melakukan pencarian dari baris pertama sampai terakhir, yang artinya semakin banyak datanya, maka akan semakin lambat proses pencarian datanya</li>
+<li>Saat kita membuat index, MySQL akan menyimpan data dalam struktur data B-Tree :<br>
+<a href="https://en.wikipedia.org/wiki/B-tree">https://en.wikipedia.org/wiki/B-tree</a></li>
+<li>Tidak hanya akan mempermudah kita saat melakukan pencarian, index juga akan mempermudah kita ketika melakukan pengurutan menggunakan ORDER BY<br>
+<a href="https://dev.mysql.com/doc/refman/8.0/en/optimization-indexes.html">https://dev.mysql.com/doc/refman/8.0/en/optimization-indexes.html</a></li>
+</ul>
+<hr>
+<h2 id="cara-kerja-index">Cara Kerja Index</h2>
+<ul>
+<li>Kita bisa membuat lebih dari satu index di table, dan setiap kita membuat index, kita bisa membuat index untuk beberapa kolom sekaligus</li>
+<li>Misal kita membuat index</li>
+<li>(col1, col2, col3)</li>
+<li>Artinya kita punya kemampuan untuk mencari lebih menggunakan index untuk kombinasi query di (col1), (col1, col2) dan (col1, col2, col3)</li>
+</ul>
+<hr>
+<h2 id="efek-samping-membuat-index">Efek Samping Membuat Index</h2>
+<ul>
+<li>Index mungkin akan mempercepat untuk proses pencarian dan query data</li>
+<li>Namun, saat kita membuat index, artinya MySQL akan melakukan proses update data di index tiap kali kita menambah, mengubah atau menghapus data di table</li>
+<li>Artinya Index membuat proses pencarian dan query lebih cepat, tapi memperlambat proses manipulasi data</li>
+<li>Oleh karena itu, kita harus bijak saat membuat index</li>
+</ul>
+<hr>
+<h2 id="tidak-perlu-index">Tidak Perlu Index</h2>
+<ul>
+<li>Saat kita membuat PRIMARY KEY dan UNIQUE constraint, kita tidak perlu menambahkan lagi index</li>
+<li>Hal ini dikarenakan MySQL secara otomatis akan menambahkan index pada kolom PRIMARY KEY dan UNIQUE constraint</li>
+</ul>
+<hr>
+<h2 id="membuat-table-dengan-index">Membuat Table dengan Index</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> sellers
+(
+    id <span class="hljs-type">INT</span> <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span> AUTO_INCREMENT,
+    name <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">100</span>),
+    email <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">100</span>),
+    <span class="hljs-keyword">PRIMARY</span> KEY (id),
+    <span class="hljs-keyword">UNIQUE</span> KEY email_unique (email),
+    INDEX name_index (name)
+) ENGINE <span class="hljs-operator">=</span> InnoDB;
+</code></pre>
+<p><strong>Hasil :</strong></p>
+<p><img src="..\assets\img\31\1.PNG" alt="1"></p>
+<hr>
+<h2 id="menambahmenghapus-index">Menambah/Menghapus Index</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> sellers
+    <span class="hljs-keyword">ADD</span> INDEX name_index (name);
+
+<span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> sellers
+    <span class="hljs-keyword">DROP</span> INDEX name_index;
+</code></pre>
+
+        
+        
+    </body>
+    </html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Constraint</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="../assets/css/markdown.min.css">
+<link rel="stylesheet" href="../assets/css/highlight.min.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="constraint">Constraint</h1>
+<h2 id="constraint-1">Constraint</h2>
+<ul>
+<li>Di MySQL, kita bisa menambahkan constraint untuk menjaga data di tabel tetap baik</li>
+<li>Constraint sangat bagus ditambahkan untuk menjaga terjadi validasi yang salah di program kita, sehingga data yang masuk ke database tetap akan terjaga</li>
+</ul>
+<hr>
+<h2 id="unique-constraint">Unique Constraint</h2>
+<ul>
+<li>Unique constraint adalah constraint yang memastikan bahwa data kita tetap unique</li>
+<li>Jika kita mencoba memasukkan data yang duplikat, maka MySQL akan menolak data tersebut</li>
+</ul>
+<hr>
+<h2 id="membuat-table-dengan-unique-constraint">Membuat Table dengan Unique Constraint</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> customers
+(
+    id <span class="hljs-type">INT</span> <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span> AUTO_INCREMENT,
+    email <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">100</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span>,
+    first_name <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">100</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span>,
+    last_name <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">100</span>),
+    <span class="hljs-keyword">PRIMARY</span> KEY (id),
+    <span class="hljs-keyword">UNIQUE</span> KEY email_unique (email)
+) ENGINE <span class="hljs-operator">=</span> InnoDB;
+</code></pre>
+<p><strong>Hasil :</strong></p>
+<p><img src="..\assets\img\30\1.PNG" alt="1"></p>
+<hr>
+<h2 id="menambahmenghapus-unique-constraint">Menambah/Menghapus Unique Constraint</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> customers
+    <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">CONSTRAINT</span> email_unique <span class="hljs-keyword">UNIQUE</span> (email);
+
+<span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> customers
+    <span class="hljs-keyword">DROP</span> COSNTRAINT email_unique;
+</code></pre>
+<hr>
+<h2 id="check-constraint">Check Constraint</h2>
+<ul>
+<li>Check constraint adalah constraint yang bisa kita tambahkan kondisi pengecekannya</li>
+<li>Ini cocok untuk mengecek data sebelum dimasukkan ke dalam database</li>
+<li>Misal kita ingin memastikan bahwa harga harus diatas 1000 misal</li>
+<li>Maka kita bisa menggunakan check constraint</li>
+</ul>
+<hr>
+<h2 id="membuat-table-dengan-check-constraint">Membuat Table dengan Check Constraint</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> products
+(
+    id <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">10</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span>,
+    name <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">100</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span>,
+    description TEXT,
+    price <span class="hljs-type">INT</span> UNSIGNED <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span>,
+    quantity <span class="hljs-type">INT</span> UNSIGNED <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-number">0</span>,
+    created_at <span class="hljs-type">TIMESTAMP</span> <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-built_in">CURRENT_TIMESTAMP</span>,
+    <span class="hljs-keyword">PRIMARY</span> KEY(id),
+    <span class="hljs-keyword">CONSTRAINT</span> price_check <span class="hljs-keyword">CHECK</span> (price <span class="hljs-operator">&gt;=</span> <span class="hljs-number">1000</span>)
+) ENGINE <span class="hljs-operator">=</span> InnoDB;
+</code></pre>
+<hr>
+<h2 id="menambahmenghapus-check-constraint">Menambah/Menghapus Check Constraint</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> products
+    <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">CONSTRAINT</span> price_check <span class="hljs-keyword">CHECK</span> (price <span class="hljs-operator">&gt;=</span> <span class="hljs-number">1000</span>);
+
+<span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> products
+    <span class="hljs-keyword">DROP</span> <span class="hljs-keyword">CONSTRAINT</span> price_check;
+</code></pre>
+
+        
+        
+    </body>
+    </html>

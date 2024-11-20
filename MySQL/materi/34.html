@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Join</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="../assets/css/markdown.min.css">
+<link rel="stylesheet" href="../assets/css/highlight.min.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="join">Join</h1>
+<h2 id="join-1">Join</h2>
+<ul>
+<li>MySQL mendukung query SELECT langsung ke beberapa tabel secara sekaligus</li>
+<li>Namun untuk melakukan itu, kita perlu melakukan JOIN di SQL SELECT yang kita buat</li>
+<li>Untuk melakukan JOIN, kita perlu menentukan tabel mana yang merupakan referensi ke tabel lain</li>
+<li>Join cocok sekali dengan foreign key, walaupun di MySQL tidak ada aturan kalau JOIN harus ada foreign key</li>
+<li>Join di MySQL bisa dilakukan untuk lebih dari beberapa tabel</li>
+<li>Tapi ingat, semakin banyak JOIN, maka proses query akan semakin berat dan lambat, jadi harap bijak ketika melakukan JOIN</li>
+<li>Idealnya kita melakukan JOIN jangan lebih dari 5 tabel, karena itu bisa berdampak ke performa query yang lambat</li>
+</ul>
+<hr>
+<h2 id="melakukan-join-table">Melakukan JOIN Table</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> wishlist
+<span class="hljs-keyword">JOIN</span> products <span class="hljs-keyword">ON</span> (wishlist.id_product <span class="hljs-operator">=</span> products.id);
+</code></pre>
+<p><strong>Hasil :</strong></p>
+<p><img src="..\assets\img\34\1.PNG" alt="1"></p>
+<pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> products.id, products.name, wishlist.description
+<span class="hljs-keyword">FROM</span> wishlist
+<span class="hljs-keyword">JOIN</span> products <span class="hljs-keyword">ON</span> (products.id <span class="hljs-operator">=</span> wishlist.id_product);
+</code></pre>
+<p><strong>Hasil :</strong></p>
+<p><img src="..\assets\img\34\2.PNG" alt="2"></p>
+<hr>
+<h2 id="membuat-relasi-ke-table-customers">Membuat Relasi ke Table Customers</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> wishlist
+    <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">COLUMN</span> id_customer <span class="hljs-type">INT</span>;
+
+<span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> wishlist
+<span class="hljs-keyword">ADD</span> <span class="hljs-keyword">CONSTRAINT</span> fk_wishlist_customer
+<span class="hljs-keyword">FOREIGN</span> KEY (id_customer) <span class="hljs-keyword">REFERENCES</span> customer(id);
+</code></pre>
+<hr>
+<h2 id="melakukan-join-multiple-table">Melakukan JOIN Multiple Table</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> customers.email, products.id, products.name, wishlist.description
+<span class="hljs-keyword">FROM</span> wishlist
+<span class="hljs-keyword">JOIN</span> products <span class="hljs-keyword">ON</span> (products.id <span class="hljs-operator">=</span> wishlist.id_product)
+<span class="hljs-keyword">JOIN</span> customers <span class="hljs-keyword">ON</span> (customers.id <span class="hljs-operator">=</span> wishlist.id_customer);
+</code></pre>
+<p><strong>Hasil :</strong></p>
+<p><img src="..\assets\img\34\3.PNG" alt="3"></p>
+
+        
+        
+    </body>
+    </html>

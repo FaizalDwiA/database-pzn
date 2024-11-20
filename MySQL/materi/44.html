@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Backup Database</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="../assets/css/markdown.min.css">
+<link rel="stylesheet" href="../assets/css/highlight.min.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="backup-database">Backup Database</h1>
+<h2 id="backup-database-1">Backup Database</h2>
+<ul>
+<li>Saat membuat aplikasi menggunakan database, ada baiknya kita selalu melakukan backup data secara reguler</li>
+<li>Untungnya MySQL mendukung proses backup database</li>
+<li>Untuk melakukan backup database, kita tidak menggunakan perintah SQL, melainkan MySQLmenyediakan sebuah aplikasi khusus untuk melakukan backup database, namanya adalah mysqldump</li>
+<li><a href="https://dev.mysql.com/doc/refman/8.0/en/mysqldump.html">https://dev.mysql.com/doc/refman/8.0/en/mysqldump.html</a></li>
+</ul>
+<hr>
+<h2 id="melakukan-backup-database">Melakukan Backup Database</h2>
+<pre><code class="language-sql">mysqldump belajar_mysql <span class="hljs-operator">-</span>uroot <span class="hljs-operator">-</span>p <span class="hljs-comment">--result-file=&quot;/Users/Program Is Fun/Desktop/belajar_mysql.sql</span>
+</code></pre>
+<pre><code class="language-sql">mysqldump belajar_mysql <span class="hljs-comment">--user root --password --result-file=&quot;/Users/Program Is Fun/Desktop/belajar_mysql.sql</span>
+</code></pre>
+<p><img src="..\assets\img\44\1.PNG" alt="1"></p>
+
+        
+        
+    </body>
+    </html>

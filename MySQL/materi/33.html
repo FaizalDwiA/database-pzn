@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Table Relationship</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="../assets/css/markdown.min.css">
+<link rel="stylesheet" href="../assets/css/highlight.min.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="table-relationship">Table Relationship</h1>
+<h2 id="table-relationship-1">Table Relationship</h2>
+<ul>
+<li>Dalam Relational DBMS, salah satu fitur andalan nya adalah table relationship. Yaitu relasi antar tabel</li>
+<li>Kita bisa melakukan relasi dari satu tabel ke tabel lain.</li>
+<li>Dalam kehidupan nyata pun pasti kita akan sering membuat relasi antar tabel</li>
+<li>Misal, saat kita membuat aplikasi penjualan, di laporan penjualan pasti ada data barang. Jika di tabel artinya tabel penjualan akan berelasi dengan tabel barang</li>
+<li>Misal dalam aplikasi kampus, tabel mahasiswa akan berelasi dengan tabel mata kuliah, dan tabel dosen</li>
+<li>Dan lain-lain</li>
+</ul>
+<hr>
+<h2 id="foreign-key">Foreign Key</h2>
+<ul>
+<li>Saat membuat relasi tabel, biasanya kita akan membuat sebuah kolom sebagai referensi ke tabel lainnya</li>
+<li>Misal saat kita membuat tabel penjualan, di dalam tabel penjualan, kita akan menambahkan kolom id_produk sebagai referensi ke tabel produk, yang berisi primary key di tabel produk</li>
+<li>Kolom referensi ini di MySQL dinamakan Foreign Key</li>
+<li>Kita bisa menambah satu satu lebih foreign key ke dalam sebuah tabel</li>
+<li>Membuat foreign key sama seperti membuat kolom biasanya, hanya saja kita perlu memberi tahu MySQL bahwa itu adalah foreign key ke tabel lain</li>
+</ul>
+<hr>
+<h2 id="membuat-table-dengan-foreign-key">Membuat Table dengan Foreign Key</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> wishlist
+(
+    id <span class="hljs-type">INT</span> <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span> AUTO_INCREMENT,
+    id_product <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">10</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span>,
+    description TEXT,
+    <span class="hljs-keyword">PRIMARY</span> KEY (id),
+    <span class="hljs-keyword">CONSTRAINT</span> fk_wishlist_product
+        <span class="hljs-keyword">FOREIGN</span> KEY (id_product) <span class="hljs-keyword">REFERENCES</span> products (id)
+) ENGINE <span class="hljs-operator">=</span> InnoDB;
+</code></pre>
+<hr>
+<h2 id="menambahmenghapus-foreign-key">Menambah/Menghapus Foreign Key</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> wishlist
+    <span class="hljs-keyword">DROP</span> <span class="hljs-keyword">CONSTRAINT</span> fk_wishlist_product;
+
+<span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> wishlist
+    <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">CONSTRAINT</span> fk_wishlist_product
+        <span class="hljs-keyword">FOREIGN</span> KEY (id_product) <span class="hljs-keyword">REFERENCES</span> products (id);
+</code></pre>
+<hr>
+<h2 id="keuntungan-menggunakan-foreign-key">Keuntungan Menggunakan Foreign Key</h2>
+<ul>
+<li>Foreign key memastikan bahwa data yang kita masukkan ke kolom tersebut harus tersedia di tabel reference nya</li>
+<li>Selain itu saat kita menghapus data di tabel reference, MySQL akan mengecek apakah id nya digunakan di foreign key di tabel lain, jika digunakan, maka secara otomatis MySQL akan menolak proses delete data di tabel reference tersebut</li>
+</ul>
+<hr>
+<h2 id="ketika-menghapus-data-berelasi">Ketika Menghapus Data Berelasi</h2>
+<ul>
+<li>Seperti yang sebelumnya dibahas, ketika kita menghapus data yang berelasi, maka secara otomatis MySQL akan menolak operasi delete tersebut</li>
+<li>Kita bisa mengubah fitur ini jika kita mau, ada banyak hal yang bisa dilakukan ketika data berelasi dihapus, defaultnya memang akan ditolak (RESTRICT)</li>
+</ul>
+<hr>
+<h2 id="behavior-foreign-key">Behavior Foreign Key</h2>
+<table border="1" width="100%">
+    <tr>
+        <th>Behavior</th>
+        <th>ON DELETE</th>
+        <th>ON UPDATE</th>
+    </tr>
+    <tr>
+        <td>RESTRICT</td>
+        <td>Ditolak</td>
+        <td>Ditolak</td>
+    </tr>
+    <tr>
+        <td>CASCADE</td>
+        <td>Data akan dihapus</td>
+        <td>Data akan ikut diubah</td>
+    </tr>
+    <tr>
+        <td>NO ACTION</td>
+        <td>Data dibiarkan</td>
+        <td>Data dibiarkan</td>
+    </tr>
+    <tr>
+        <td>SET NULL</td>
+        <td>Diubah jadi NULL</td>
+        <td>Diubah jadi NULL</td>
+    </tr>
+</table>
+<hr>
+<h2 id="mengubah-behavior-menghapus-relasi">Mengubah Behavior Menghapus Relasi</h2>
+<pre><code class="language-sql"><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> wishlist
+    <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">CONSTRAINT</span> fk_wishlist_product
+        <span class="hljs-keyword">FOREIGN</span> KEY (id_product) <span class="hljs-keyword">REFERENCES</span> product (id)
+            <span class="hljs-keyword">ON</span> <span class="hljs-keyword">DELETE</span> CASCADE <span class="hljs-keyword">ON</span> <span class="hljs-keyword">UPDATE</span> CASCADE;
+</code></pre>
+
+        
+        
+    </body>
+    </html>
